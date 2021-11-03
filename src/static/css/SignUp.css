@@ -1,0 +1,84 @@
+* {
+    margin:0;
+    background-color: #83C5BE;
+    font-family: 'Nunito', sans-serif;
+}
+
+.logo-class {
+    width: 200px;
+    height: 50px;
+    margin-top: 2%; 
+}
+
+.login-class {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px dashed white;
+    margin: 5vh 50vh 7vh 50vh;
+    padding: 5vh;
+    height: fit-content;
+    width: fit-content;
+}
+
+.Login-header-class{
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 44px;
+    margin-top: 20px;
+}
+
+.input-class {
+    display: flex;
+    flex-direction: column;
+    margin: 7vh;
+}
+
+.emailpass-input{
+    position: relative;
+}
+
+.icon-class{
+    position: absolute;
+    width:30px;
+    height:20px;
+    top: 15px; 
+    left:20px;
+    background-color: rgba(237, 246, 249, 0.5);
+}
+
+.input-class-text{
+    width: 40vh;
+    height: 5vh;
+    background-color: rgba(237, 246, 249, 0.5);
+    border: none;
+    border-radius: 30px;
+    padding: 5px 5px 5px 70px;
+    font-size: 18px;
+}
+
+.Email {
+    margin-bottom: 4vh;
+    
+}
+
+.lock{
+    top: 9px;
+    width: 29px;
+    height: 29px;
+    background: none;
+
+}
+
+::placeholder{
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
+.button-class{
+    border:none; 
+
+}
+
+.Signup-class{
+    margin-top: 20px;
+}

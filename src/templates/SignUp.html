@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/SignUp.css" />
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>SignUp</title>
+</head>
+<body>
+    <div>
+        <img src="../static/assets/BPlatform.svg" alt='BPlatform' class='logo-class'/>
+        <div>
+            <box>
+                <form action="/register" class='login-class' method="post">
+                    <h1 class='Login-header-class'>SIGNUP</h1>
+                    <div class="input-class">
+                        <div class="emailpass-input">
+                            <img src="../static/assets/user.png" class='icon-class lock' />
+                            <input type="text" placeholder="Username" class="input-class-text Email" name="username"/>
+                        </div>
+                        <div class="emailpass-input">
+                            <img src="../static/assets/email.png" class='icon-class' />
+                            <input type="email" placeholder="Email Address" class="input-class-text Email" name="email"/>
+                        </div>
+                        <div class="emailpass-input">
+                            <img src="../static/assets/padlock.png" class='icon-class lock' />
+                            <input type="password" placeholder="Password" class="input-class-text Password" name="password"/>
+                        </div>
+                    </div>
+                    <button type='submit' class="button-class">
+                        <img src ="../static/assets/Button.png" alt='Login' />
+                    </button>
+                    <h5 class="Signup-class">Already have an account? <a href="/login">Login</a> </h5>
+                </form>
+            </box>
+        </div>
+    </div>
+</body>
+</html>

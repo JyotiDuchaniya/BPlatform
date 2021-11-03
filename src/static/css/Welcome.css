@@ -1,0 +1,102 @@
+* {
+    margin:0
+}
+.whole-box {
+    display:flex;
+    flex-direction: row;
+}
+.buy-container{
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+    background-color : #EDF6F9;
+    flex-direction: column;
+}
+
+.logo-class {
+    width: 200px;
+    height: 50px;
+    margin-top: 5%; 
+}
+.sell-container{
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+    background-color: #83C5BE;
+    flex-direction: column;
+}
+
+.buy-heading-class{
+    display: flex;
+    align-items: center;
+    margin-top: 36%;
+    flex-direction: column;
+}
+
+.sell-heading-class{
+    display: flex;
+    align-items: center;
+    margin-top: 42.3vh;
+    flex-direction: column;
+}
+
+.heading-class {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 65px;
+}
+
+.subheading-class {
+
+    margin-top: 1%;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+
+}
+
+.button-class{
+    display: flex;
+    align-self: flex-end;
+    margin: 5% 5% 0 0;
+   
+    
+}
+
+.button-class-login{
+    font-family: Nunito;
+    margin-right: 10%;
+    font-size: 1rem;
+    width: 6rem;
+    height: 2.5rem;
+    align-items: center;
+    background: #006D77;
+    border-radius: 10vh;
+    border: none;
+    color: white;
+}
+
+.button-class-signup{
+    font-family: Nunito;
+    font-size: 1rem;
+    width: 6rem;
+    height: 2.5rem;
+    align-items: center;
+    background: rgba(0, 109, 119, 0.5);
+    border: none;
+    border-radius: 10vh;
+    color: white;
+}
+
+.buy-section{
+text-decoration: None;
+}
+
+.sell-section{
+text-decoration: None;
+}

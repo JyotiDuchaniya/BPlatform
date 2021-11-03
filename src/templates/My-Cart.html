@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My-cart</title>
+    <link rel="Stylesheet" href="../static/css/My-cart.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <script src="../static/js/My-Cart-Functionality.js"></script>
+    <script src="../static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <form action="/books/search" method="post">
+        <div class="searchbar-class">
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        </form>
+        </div>
+        <div class="Button-class">
+            <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
+            <div class="dropdown">
+                <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
+                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/users/buy/my-account">My Account</a>
+                    <a href="/users/buy/order-history">Order History</a>
+                </div>
+            </div>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
+                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+            </button>
+            <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
+                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+            </button>
+        </div>
+    </div>
+    <div class="whole-page">
+        <div class="cart-details">
+            <div class="order-and-address">
+
+                <div class="orders">
+
+                    {% for i in cartbook %}
+                    <div class="order">
+
+                        <div class="book-order-class">
+                            <h3 style="font-weight: bolder;">{{ i.b_title }}</h3>
+                            <h5 class="author-class">Author: {{ i.b_author }}</h5>
+                            <div class="add-remove">
+                                <button class="icon" onclick="addEventListener('click', () => {window.location= '/users/my-cart/add-book/{{ i.b_id }}';});">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                <h5 class="input-class-item">{{ user.u_cart[i.b_id] }}</h5>
+                                <button class="icon" onclick="addEventListener('click', () => {window.location= '/users/my-cart/delete-book/{{ i.b_id }}';});">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="price-class">{{ i.b_price*user.u_cart[i.b_id] }} INR</h3>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="address">
+                    <div class="address-info">
+                        <h2>Address:</h2>
+                        <p style="margin-top: 5px;">{{ user.u_street }}, {{ user.u_city }}, {{user.u_state }}, {{ user.u_country }}-{{ user.u_pin }}</p>
+                    </div>
+                    <button class="change-address-button" id="change-address-my-cart" onclick="onClickAddressMyCart(this)">Change</button>
+                </div>
+            </div>
+            <div class="price-breakup">
+                <div class="individual-price">
+                    {% set tp = namespace(total_price=0) %}
+                    {% for y in cartbook %}
+                    {% set tp.total_price = tp.total_price + y.b_price*user.u_cart[y.b_id] %}
+                    {% endfor %}
+                    <p >Price</p>
+                    <p>{{ tp.total_price }} INR</p>
+
+                </div>
+                <div class="individual-price">
+                    <p >Discount</p>
+                    {% set discount=(0.1*tp.total_price)|round|int %}
+                    <p>-{{ discount }} INR</p>
+                </div>
+                <div class="individual-price">
+                    <p >Delivery</p>
+                    <p>+20 INR</p>
+                </div>
+                <div style="font-weight: bolder;margin-top: 25px;" class="individual-price">
+                    <p>Total Price</p>
+                    <p>{{ tp.total_price-discount+20}}  INR</p>
+                </div>
+            </div>
+        </div>
+        <button class="Place-order-button" >Place Order</button>
+        <div id="modal_container_address" class="modal-container">
+            <div class="modal addressmodal">
+                <div class="modal-contents">
+                    <button id="close_address" class="close-btn closeaddress" onclick="onClick(this)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    <form action="/users/my-cart/update-address" method="post">
+                        <div class="input-boxes-address">
+                            <div class="individual addaddress">
+                                <h4 class="change-password-head">Area and Street</h4>
+                                <input class="input-class" style=" width: 30vw" {% if user.u_street == None %}
+                                       value=""
+                                       {% else %}
+                                       value="{{user.u_street}}"
+                                       {% endif %}
+                                       name="street" />
+                            </div>
+                            <div class="individual addaddress">
+                                <h4 class="change-password-head">City</h4>
+                                <input class="input-class" style=" width: 30vw" {% if user.u_city == None %}
+                                       value=""
+                                       {% else %}
+                                       value="{{user.u_city}}"
+                                       {% endif %} name="city"/>
+                            </div>
+                            <div class="individual addaddress">
+                                <h4 class="change-password-head">PinCode</h4>
+                                <input class="input-class" style=" width: 30vw" {% if user.u_pin == None %}
+                                       value=""
+                                       {% else %}
+                                       value="{{user.u_pin}}"
+                                       {% endif %} name="pin"/>
+                            </div>
+                            <div class="individual addaddress">
+                                <h4 class="change-password-head">State</h4>
+                                <input class="input-class" style=" width: 30vw" {% if user.u_state == None %}
+                                       value=""
+                                       {% else %}
+                                       value="{{user.u_state}}"
+                                       {% endif %} name="state" />
+                            </div>
+                            </div>
+                            <div class="individual addaddress">
+                                <h4 class="change-password-head">Country</h4>
+                                <input class="input-class" style=" margin-right: 15px; width: 30vw" {% if user.u_country == None %}
+                                       value=""
+                                       {% else %}
+                                       value="{{user.u_country}}"
+                                       {% endif %} name="country" />
+                            </div>
+                            <div class="button-change-class">
+                                <button class="Change-class" type="submit">Change</button>
+                                <button id="cancel-button_address" class="Cancel-button" onclick="onClick(this)" type="button">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div
+    </div>
+
+
+</body>
+</html>

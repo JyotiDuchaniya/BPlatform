@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Sell Content </title></head>
+<body>
+    <script src="../static/js/Header-Functionality.js"></script>
+  <div class="header-class">
+        <img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/>
+        <div class="Button-class">
+            <button class="solid-button-class" id="buy-button" onclick="onClickBuyButton(this)">Buy</button>
+            <button id="my-account-button" onclick="addEventListener('click', () => {window.location= '/users/sell/my-account';});" class="icon-button-class">
+                <img src="../static/assets/myaccount.png" alt="my-account" />
+            </button>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class"><img src="../static/assets/discuss.png" alt="discuss" style="width: 32px;height: 32px;" /></button>
+            <button id="my-book-list" onclick="onClickBookListButton(this)" class="icon-button-class"><img src="../static/assets/list.png" alt="my-cart"  /></button>
+            <button id="logout" onclick="onClickLogOut(this)" class="icon-button-class" ><img src="../static/assets/logout.png" alt="logout" style="height:26px" /></button>
+        </div>
+  </div>
+    <article class="whole-box">
+        <div class="book-class">
+            <img src="../static/assets/book%201.png" class="book"/>
+        </div>
+        <box class="list-class">
+            <form action="/welcome/sell" method="post">
+            <div class="Title-class">
+                <div class="setting">
+                    <h4 class="head-er">Title</h4>
+                    <input type="text" class="Text-class" name="book-title" >
+                </div>
+               <div class="setting">
+                    <h4 class="head-er">Authors</h4>
+                   <input type="text" class="Text-class" name="book-author">
+               </div>
+                <div class="setting">
+                    <h4 class="head-er">ISBN</h4>
+                    <input type="text" class="Text-class" name="book-isbn">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Language</h4>
+                    <input type="text" class="Text-class" name="book-lang">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Pages</h4>
+                    <input type="text" class="Text-class" name="book-pages">
+                </div>
+                 <div class="setting">
+                    <h4 class="head-er">Genre</h4>
+                    <input type="text" class="Text-class" name="book-genre">
+                </div>
+                 <div class="setting">
+                    <h4 class="head-er">Publisher</h4>
+                    <input type="text" class="Text-class" name="book-publisher">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Old/New</h4>
+                    <input type="text" class="Text-class" name="book-type">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Price</h4>
+                    <input type="text" class="Text-class" name="book-price">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Edition</h4>
+                    <input type="text" class="Text-class" name="book-edition">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Quantity</h4>
+                    <input type="text" class="Text-class" name="book-quantity">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Description</h4>
+                    <textarea cols="105" rows="7" maxlength="500" class="Text-class-textarea" name="book-description"></textarea>
+                </div>
+            </div>
+            <div class="check-class">
+                <button class="button-class" type="submit"><img src="../static/assets/check%201.png" >
+                </button>
+                <button class="button-class">
+                <img src="../static/assets/remove%201.png" >
+                </button>
+            </div>
+            </form>
+        </box>
+    </article>
+</body>
+</html>

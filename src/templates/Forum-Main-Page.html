@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/Forum-Main-Page.css" />
+    <title>Forum</title>
+</head>
+<body>
+    <script src="../static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <div class="searchbar-class">
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" />
+        </div>
+        <div class="Button-class">
+            <button id="my-account-button"  class="icon-button-class" onclick="onClickMyAccount(this)">
+                <embed src="../static/assets/myaccount.svg" alt="my-account" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <embed src="../static/assets/logout.svg" alt="logout" class="icon-class" />
+            </button>
+        </div>
+    </div>
+    <article class="whole-forum">
+        {% if posts %}
+        <div class="all-blogs">
+                {% for i in posts %}
+                <div class="one-blog">
+                    <div class="blog-content-title">
+                        <h3 style="font-weight:bolder !important">{{ i.blog_title }}</h3>
+                        <h5 class="blog-content">{{ i.blog_description[:400] }}...<a href="/welcome/forum/{{ i.blog_id }}">Read More</a></h5>
+                    </div>
+                    <div class="blog-author-date">
+                        <h4>By: {{ i.blog_author }}</h4>
+                        <h5>{{ i.blog_time }}</h5>
+                    </div>
+                </div>
+                {% if loop.index != count %}
+                    <hr>
+                {% endif %}
+                {% endfor %}
+        </div>
+        {% else %}
+                <h2 class="no-posts">No Posts available</h2>
+        {% endif %}
+        <form action="/welcome/forum" method="post">
+            <div class="create-blog">
+                <h1>POST SOMETHING...</h1>
+                <input type="text" class="blog-title" name="blog-title" id="blog-title" placeholder="Title" />
+                <textarea cols="40" rows="7" class="blog-description" placeholder="Description" name="blog-description"></textarea>
+                <button class="Post-Button" type="submit">Post</button>
+            </div>
+        </form>
+    </article>
+</body>
+</html>

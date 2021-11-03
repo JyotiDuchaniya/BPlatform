@@ -1,0 +1,153 @@
+*{
+    margin: 0px;
+   font-family: 'Nunito', sans-serif;
+}
+
+.header-class{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #83C5BE;
+    width:100%;
+    height: 100%;
+
+}
+
+.logo-class{
+    width: 200px;
+    height: 50px;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+}
+
+.searchbar-class{
+    margin-top: 0.5%;
+}
+
+.search1-input-class{
+    width: 20vw;
+    height: 40%;
+    background-color: #F2F4F8;
+    border: none;
+    border-radius: 30px;
+    padding: 5px 5px 5px 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    margin-top: 1.3%;
+    margin-left: 0.5%;
+}
+
+.search-icon{
+    position: absolute;
+    top:2.0%;
+    margin-left: 1%;
+    background: none;
+}
+
+.Button-class{
+     display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:7vw;
+    margin-top: 0.9%;
+    margin-right:20px;
+}
+
+.solid-button-class{
+    width: 65px;
+    height: 30px;
+    background-color: #E29578;
+    border: none;
+    color: white;
+    border-radius: 12px;
+}
+
+.icon-button-class{
+    background:None;
+    border:None;
+    margin-top:-1vh
+}
+
+.icon-class{
+    width: 32px;
+    height: 32px;
+}
+
+.whole-forum{
+    display:flex;
+    flex-direction:row;
+}
+
+.all-blogs{
+    display:flex;
+    flex-direction:column;
+    width:50vw;
+    margin: 5vh 5vh 5vh 15vh;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+.one-blog{
+    display:flex;
+    flex-direction:row;
+    margin:30px;
+    justify-content:space-between;
+}
+
+.blog-content-title{
+width: 35vw;
+}
+
+.blog-content{
+margin-top:20px;
+}
+
+.blog-author-date{
+display:flex;
+flex-direction:column;
+justify-content: space-between;
+}
+
+.create-blog{
+    position: fixed;
+    right:0;
+    margin-top:25vh;
+    margin-right: 9vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40vh;
+}
+
+.blog-title{
+    height: 5vh;
+    width: 30vw;
+    background: rgba(35, 2, 2, 0.04);
+    border-radius: 8px;
+    border: none;
+    padding-left:10px;
+}
+
+.blog-description{
+    resize: none;
+    background: rgba(35, 2, 2, 0.04);
+    border-radius: 8px;
+    border: none;
+    padding:10px;
+}
+
+.Post-Button{
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    width: 80px;
+    height: 30px;
+    align-self: flex-end;
+    margin-top: 15px;
+    border: none;
+
+}
+
+.no-posts{
+margin-left: 30vw;
+margin-top: 40vh;
+}

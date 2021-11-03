@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/My-Order-History.css" />
+    <title>Order History</title>
+</head>
+<body>
+    <script src="/static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <form action="/books/search" method="post">
+        <div class="searchbar-class">
+            <img src="/static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        </form>
+        </div>
+        <div class="Button-class">
+            <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
+            <div class="dropdown">
+                <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
+                    <img src="/static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/users/buy/my-account">My Account</a>
+                    <a href="/users/buy/order-history">Order History</a>
+                </div>
+            </div>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
+                <img src="/static/assets/discuss.png" alt="discuss"  class="icon-class" />
+            </button>
+            <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
+                <img src="/static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <img src="/static/assets/logout.png" alt="logout" class="icon-class" />
+            </button>
+        </div>
+    </div>
+    <div class="All-orders">
+        {% for i in orders %}
+        <div class="One-Order-Detail">
+            <div class="book-order-class">
+                <h3 style="font-weight: bolder; width: 40vw">{{ i.b_title }}</h3>
+                <h5 style="margin-left: 2vw">Author: {{ i.b_author }}</h5>
+            </div>
+            <h4 style="font-weight: bold;margin-top: 6vh">Delivery Expected by 27 Aug</h4>
+            <h1 class="price-class">{{ i.b_price }}</h1>
+            <div class="Order-buttons">
+                <button class="order-button order-details">View Order Details</button>
+                <button class="order-button Track-My-Order">Track my Order</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

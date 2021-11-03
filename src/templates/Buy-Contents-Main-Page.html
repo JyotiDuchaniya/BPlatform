@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="import" href="Header-Sell.html" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Buy</title>             
+</head>
+<body>
+    <script src="../static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <form action="/books/search" method="post">
+        <div class="searchbar-class">
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        </form>
+        </div>
+        <div class="Button-class">
+            <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
+            <div class="dropdown">
+                <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
+                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/users/buy/my-account">My Account</a>
+                    <a href="/users/buy/order-history">Order History</a>
+                </div>
+            </div>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
+                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+            </button>
+            <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
+                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+            </button>
+        </div>
+    </div>
+    <div class="whole-content">
+        <div class="Filters-whole-container">
+            <form class="radio-button-class" action="/welcome/filter" method="post">
+                <div class="header-save">
+                    <h3 class="Filters-class">Filters</h3>
+                    <button class="filter-save" type="submit">Save</button>
+                </div>
+                <div class="Typecollective-class">
+                    <h5 class="subtype-class">Type</h5>
+                    <div class="checkbox-with-content">
+
+                        {% if "Old" in type %}
+                        <input type="checkbox" id="Old" name="type[]" value="Old" checked>
+                        <label for="Old"> Old</label><br>
+                        {% else %}
+                        <input type="checkbox" id="Old1" name="type[]" value="Old">
+                        <label for="Old1"> Old</label><br>
+                        {% endif %}
+                    </div>
+                    <div class="checkbox-with-content">
+                        {% if "New" in type %}
+                        <input type="checkbox" id="New" name="type[]" value="New" checked>
+                        <label for="New"> New</label><br>
+                        {% else %}
+                        <input type="checkbox" id="New1" name="type[]" value="New">
+                        <label for="New1"> New</label><br>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="Typecollective-class">
+                    <h5 class="subtype-class">Genre</h5>
+                    {% for g in genre_list %}
+                    <div class="checkbox-with-content">
+                        {% if g in genre %}
+                        <input type="checkbox" id="{{ g }}" name="genre[]" value="{{ g }}" checked>
+                        <label for="{{ g }}"> {{ g }}</label><br>
+                        {% else %}
+                        <input type="checkbox" id="{{ g }}1" name="genre[]" value="{{ g }}">
+                        <label for="{{ g }}1"> {{ g }}</label><br>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+        <div class="Book-list-class">
+            {% if data %}
+                {% for i in data %}
+                <a href="/welcome/buy/{{ i.b_id }}" style="text-decoration: none;color:inherit">
+               <div class="outer-box-class">
+                    <div class="book-class">
+                        <h3 style="font-weight: bolder;width:50vh">{{ i.b_title }}</h3>
+                        <h5 class="author-class">Author: {{ i.b_author }}</h5>
+                        {% set round_average = '%0.1f'| format(i.b_avg|float) %}
+                        {% if i.b_avg >= 3 %}
+                            {% set color= 'green' %}
+                            {% elif i.b_avg== 2 %}
+                            {% set color= 'orange' %}
+                            {% else %}
+                            {% set color= 'red' %}
+                        {% endif %}
+                            <div class="rating-number {{ color }}">
+                                <h5 style="margin: 0.5vh ;">{{ round_average }}</h5>
+                                <span class="fa fa-star star"></span>
+                            </div>
+                    </div>
+                </a>
+                <h1 class="price-class">{{ i.b_price }} INR</h1>
+                {% if cartbook != [] %}
+                        {% if i.b_id in cartbook %}
+                            <button type="button"  style="background:None;border:None" disabled >
+                                <img src="../static/assets/check.png" class="add-to-cart-class" />
+                            </button>
+                        {% else %}
+                            <button type="button" id="add-to-cart-button-new" style="background:None;border:None" onclick="addEventListener('click', () => {window.location= '/welcome/buy/{{ i.b_id }}/add-to-cart';});" >
+                                <img src="../static/assets/add-to-cart.png" class="add-to-cart-class" />
+                            </button>
+                        {% endif %}
+                {% else %}
+                    <button type="button" id="add-to-cart-button" style="background:None;border:None" onclick="addEventListener('click', () => {window.location= '/welcome/buy/{{ i.b_id }}/add-to-cart}';});" >
+                        <img src="../static/assets/add-to-cart.png" class="add-to-cart-class" />
+                    </button>
+                {% endif %}
+
+               </div>
+               {% endfor %}
+                {% else %}
+                    <h2 class="nobookavailable">No Books match your search</h2>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>

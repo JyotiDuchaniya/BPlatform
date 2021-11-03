@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="Stylesheet" href="/static/css/Book-Detail-Page.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/" />
+</head>
+<body>
+<script>
+    function onclickbackbutton(){
+        window.location= '/welcome/buy';
+    }
+
+</script>
+    <script src="../static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <form action="/books/search" method="post">
+        <div class="searchbar-class">
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        </form>
+        </div>
+        <div class="Button-class">
+            <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
+            <div class="dropdown">
+                <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
+                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/users/buy/my-account">My Account</a>
+                    <a href="/users/buy/order-history">Order History</a>
+                </div>
+            </div>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
+                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+            </button>
+            <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
+                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+            </button>
+        </div>
+    </div>
+    <div class="whole-book-detail">
+        <button class="back-button-class" onclick="onclickbackbutton()"><img src="../static/assets/arrow.png" class="arrow-class"></button>
+        <div class="image-button-class">
+            <img src="../static/assets/book 1.png" class="Book-Details-image-class" />
+
+            <div class="book-detail-button-class">
+                {% if flag == True %}
+                    <button class="book-detail-class Add-to-cart" style=" background-color: Grey;"disabled>
+                        Added to cart
+                    </button>
+                {% else %}
+                    <button class="book-detail-class Add-to-cart"   onclick="addEventListener('click', () => {window.location= '/welcome/buy/{{ book.b_id }}/add-to-cart';});">
+                        Add to cart
+                    </button>
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="Book-detail">
+            <div class="Book-class-bifercation">
+                <div class="Book-info">
+                    <div class="Book-detail-heading-class">
+                        <h1 class="Book-title">{{ book.b_title }}</h1>
+                        <h3 class="Book-author">{{ book.b_author }}</h3>
+                        <h2 class="Book-proce">{{book.b_price }} INR</h2>
+                    </div>
+                    <div class="Book-detail-info">
+                        <div class="Info">
+                            <h2 class="info-heading">Highlights:</h2>
+                            <div class="Highlight-detail">
+                                <div class="Highlight-single-detail">
+                                    <p>Language: </p><p class="detail">{{ book.b_lang }}</p>
+                                </div>
+                                <div class="Highlight-single-detail">
+                                    <p>Binding: </p><p class="detail"> Paperback</p>
+                                </div>
+                                <div class="Highlight-single-detail">
+                                    <p>Publisher:</p><p class="detail">{{ book.b_publisher }}</p>
+                                </div>
+                                <div class="Highlight-single-detail">
+                                    <p>Genre:</p><p class="detail">{{ book.b_genre }}</p>
+                                </div>
+                                <div class="Highlight-single-detail">
+                                    <p>ISBN:</p><p class="detail">{{ book.b_isbn }}</p>
+                                </div>
+                                <div class="Highlight-single-detail">
+                                    <p>Pages:</p><p class="detail">{{ book.b_pages}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Info">
+                            <h2 class="info-heading">Services:</h2>
+                            <div class="detail" style="font-size: 16px">
+                                <p>7 Days Replacement Policy</p>
+                                <p>Cash on Delivery available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Info Description">
+                    <h2 class="info-heading">Description:</h2>
+                    <p class="detail">{{ book.b_description }}</p>
+                </div>
+                <div class="ratings-section">
+                    <h3 style="margin-left:2vh">Ratings and Review</h3>
+                    <div class="rating-component">
+                        <div class="average-rating">
+                            {% set average = ( 5*book.b_five + 4*book.b_four + 3*book.b_three + 2*book.b_two + 1*book.b_one)/( book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                            {% set round_average = '%0.1f'| format(average|float) %}
+                            <h3>{{ round_average }}</h3>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <div class="entire-rating">
+                            <div class="rating-bar">
+                                <h5 style="margin-right: 1vh" >5 star</h5>
+                                {% set five_percent = (book.b_five*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                <div class="bar-container">
+                                    <div class="bar-5" style="width: {{ five_percent }}%;"></div>
+                                </div>
+                                <h5 >{{ book.b_five }}</h5>
+                            </div>
+                            <div class="rating-bar">
+                                <h5 style="margin-right: 1vh;">4 star</h5>
+                                {% set four_percent = (book.b_four*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                <div class="bar-container">
+                                    <div class="bar-4" style="width: {{ four_percent }}%;"></div>
+                                </div>
+                                <h5 >{{ book.b_four }}</h5>
+                            </div>
+                            <div class="rating-bar">
+                                <h5 style="margin-right: 1vh;">3 star</h5>
+                                {% set three_percent = (book.b_three*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                <div class="bar-container">
+                                    <div class="bar-3" style="width: {{ three_percent }}%;"></div>
+                                </div>
+                                <h5 >{{ book.b_three }}</h5>
+                            </div>
+                            <div class="rating-bar">
+                                <h5 style="margin-right: 1vh;">2 star</h5>
+                                {% set two_percent = (book.b_two*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                <div class="bar-container">
+                                    <div class="bar-2" style="width: {{ two_percent }}%;"></div>
+                                </div>
+                                <h5 >{{ book.b_two }}</h5>
+                            </div>
+                            <div class="rating-bar">
+                                <h5 style="margin-right: 1vh;">1 star</h5>
+                                {% set one_percent = (book.b_one*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                <div class="bar-container">
+                                    <div class="bar-1" style="width: {{ one_percent }}%;"></div>
+                                </div>
+                                <h5 >{{ book.b_one }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr-class" >
+                    {% if reviewflag == False %}
+                        <div class="rating-given">
+                            <h3>No reviews yet</h3>
+                        </div>
+                        <hr class="hr-class" >
+                    {% else %}
+                    {% for r in book.b_review %}
+                    <div class="seperate-rating">
+                        <div class="rating-given">
+                            {% if book.b_review[r] >= 3 %}
+                            {% set color= 'green' %}
+                            {% elif book.b_review[r]== 2 %}
+                            {% set color= 'orange' %}
+                            {% else %}
+                            {% set color= 'red' %}
+                            {% endif %}
+                            <div class="rating-number {{ color }}">
+                                <h5 style="margin: 0.5vh ;">{{ book.b_review[r] }}</h5>
+                                <span class="fa fa-star star"></span>
+                            </div>
+                            <div class="rating-description">
+                                <p style="margin:0.5vh;">{{ r }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr-class" >
+                    {% endfor %}
+                    {% endif %}
+                    <form action="/welcome/buy/{{ book.b_id }}/review" method="post">
+                    <div class="enter-star">
+                        <input type="radio" name="star" id="star1" value="5"><label for="star1"></label>
+                        <input type="radio" name="star" id="star2" value="4"><label for="star2"></label>
+                        <input type="radio" name="star" id="star3" value="3"><label for="star3"></label>
+                        <input type="radio" name="star" id="star4" value="2"><label for="star4"></label>
+                        <input type="radio" name="star" id="star5" value="1"><label for="star5"></label>
+                    </div>
+                    <div class="rating-input">
+                        <img src="../static/assets/AccountCircle.svg" class="account-circle-class"/>
+                        <textarea rows="4" cols="70" placeholder="Enter your review" class="rating-input-class" name="rating-input-class"></textarea>
+                        <button class="Post-class" type="submit">Post</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/My-Account.css" />
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/" />
+    <title>My account </title>
+</head>
+<body>
+    <script src="../static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        {% if type == 'buy' %}
+        <form action="/books/search" method="post">
+        <div class="searchbar-class">
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        </form>
+        </div>
+        <div class="Button-class">
+            <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
+            <div class="dropdown">
+                <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
+                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/users/buy/my-account">My Account</a>
+                    <a href="/users/buy/order-history">Order History</a>
+                </div>
+            </div>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
+                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+            </button>
+            <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
+                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+            </button>
+        </div>
+        {% elif type == 'sell' %}
+        <div class="Button-class">
+            <button class="solid-button-class" id="buy-button" onclick="onClickBuyButton(this)">Buy</button>
+            <button id="my-account-button" onclick="addEventListener('click', () => {window.location= '/users/sell/my-account';});" class="icon-button-class">
+                <img src="../static/assets/myaccount.png" alt="my-account" />
+            </button>
+            <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class"><img src="../static/assets/discuss.png" alt="discuss" style="width: 32px;height: 32px;" /></button>
+            <button id="my-book-list" onclick="onClickBookListButton(this)" class="icon-button-class"><img src="../static/assets/list.png" alt="my-cart"  /></button>
+            <button id="logout" onclick="onClickLogOut(this)" class="icon-button-class" ><img src="../static/assets/logout.png" alt="logout" style="height:26px" /></button>
+        </div>
+        {% endif %}
+    </div>
+    <article class="Two-box">
+        <form action="/users/my-account" method="post">
+        <div class="box-left">
+            <h4 class="profile">PROFILE</h4>
+            <div class="Name-class">
+                <div class="setting">
+                    <h4 class="head-er">Name</h4>
+                    <input type="text" class="Text-class" value="{{ user.u_name }}" name="name">
+                </div>
+               <div class="setting">
+                   <h4 class="head-er">Username</h4>
+                   <input type="text" class="Text-class" value="{{ user.u_username }}" name="username">
+               </div>
+                <div class="setting">
+                    <h4 class="head-er">Email</h4>
+                    <input type="text" class="Text-class" value="{{ user.u_email }}" readonly>
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Phone no. </h4>
+                    <input type="text" class="Text-class" value="{{ user.u_phone }}" name="phone">
+                </div>
+                <div class="setting">
+                    <h4 class="head-er">Password</h4>
+                    <input type="password" class="Text-class" value="{{ user.u_pwd }}" readonly>
+                </div>
+            </div>
+            <div class="check-class">
+                <a class="change" id="open-change-password" onclick="onClick(this)" >Change Password</a>
+                <div id="modal_container" class="modal-container">
+                    <div class="modal">
+                        <div class="modal-contents">
+                            <button id="close" class="close-btn" onclick="onClick(this)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <div class="input-boxes">
+                                <div class="individual input">
+                                    <h4 class="change-password-head">Old Password</h4>
+                                    <input class="input-class" />
+                                </div>
+                                <div class="individual input">
+                                    <h4 class="change-password-head">New Password</h4>
+                                    <input class="input-class" />
+                                </div>
+                                <div class="individual input">
+                                    <h4 class="change-password-head">Confirm Password</h4>
+                                    <input class="input-class" />
+                                </div>
+                                <div class="button-change-class">
+                                    <button class="Change-class">Change</button>
+                                    <button id="cancel-button" class="Cancel-button" onclick="onClick(this)">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="button-class" type="submit">
+                    <img src="../static/assets/check%201.png" />
+                </button>
+            </div>
+        </div>
+        </form>
+        <div class="box-right">
+             <div class="boxes">
+                 <h4 class="address">ADDRESS: </h4>
+                 <div class="boxes">
+                     {% if user.u_country == None %}
+                     <button onclick="onClickAddress(this)" id="addressbox" class="addnewaddress">Add a new Address</button>
+                     {% else %}
+                     <box class="boxs">
+                         <p class="add">{{ user.u_street }}, {{ user.u_city }}, {{user.u_state }}, {{ user.u_country }}-{{ user.u_pin }}</p>
+                         <button class="icons"><img src="../static/assets/pen.svg" id="update-address" onclick="onClickUpdateAddress(this)"></button>
+                     </box>
+                     {% endif %}
+                 </div>
+                 <div id="modal_container_address" class="modal-container">
+                    <div class="modal addressmodal">
+                        <div class="modal-contents">
+                            <button id="close_address" class="close-btn closeaddress" onclick="onClick(this)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <form action="/users/my-account/update-address" method="post">
+                                <div class="input-boxes-address">
+                                    <div class="individual addaddress">
+                                        <h4 class="change-password-head">Area and Street</h4>
+                                        <input class="input-class" style=" width: 30vw" {% if user.u_street == None %}
+                                               value=""
+                                               {% else %}
+                                               value="{{user.u_street}}"
+                                               {% endif %}
+                                               name="street" />
+                                    </div>
+                                    <div class="individual addaddress">
+                                        <h4 class="change-password-head">City</h4>
+                                        <input class="input-class" style=" width: 30vw" {% if user.u_city == None %}
+                                               value=""
+                                               {% else %}
+                                               value="{{user.u_city}}"
+                                               {% endif %} name="city"/>
+                                    </div>
+                                    <div class="individual addaddress">
+                                        <h4 class="change-password-head">PinCode</h4>
+                                        <input class="input-class" style=" width: 30vw" {% if user.u_pin == None %}
+                                               value=""
+                                               {% else %}
+                                               value="{{user.u_pin}}"
+                                               {% endif %} name="pin"/>
+                                    </div>
+                                    <div class="individual addaddress">
+                                        <h4 class="change-password-head">State</h4>
+                                        <input class="input-class" style=" width: 30vw" {% if user.u_state == None %}
+                                               value=""
+                                               {% else %}
+                                               value="{{user.u_state}}"
+                                               {% endif %} name="state" />
+                                    </div>
+                                    </div>
+                                    <div class="individual addaddress">
+                                        <h4 class="change-password-head">Country</h4>
+                                        <input class="input-class" style=" margin-right: 15px; width: 30vw" {% if user.u_country == None %}
+                                               value=""
+                                               {% else %}
+                                               value="{{user.u_country}}"
+                                               {% endif %} name="country" />
+                                    </div>
+                                    <div class="button-change-class">
+                                        <button class="Change-class" type="submit">Change</button>
+                                        <button id="cancel-button_address" class="Cancel-button" onclick="onClick(this)" type="button">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div>
+
+    </article>
+</body>
+</html>

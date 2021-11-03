@@ -1,0 +1,178 @@
+*{
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+
+.header-class{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #83C5BE;
+    width:100%;
+    height: 7vh;
+}
+
+.logo-class{
+    width: 200px;
+    height: 50px;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+}
+
+.searchbar-class{
+    margin-top: 0.5%;
+}
+
+.search1-input-class{
+    width: 20vw;
+    height: 40%;
+    background-color: #F2F4F8;
+    border: none;
+    border-radius: 30px;
+    padding: 5px 5px 5px 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    margin-top: 1.3%;
+    margin-left: 0.5%;
+}
+
+.search-icon{
+    position: absolute;
+    top:2vh;
+    margin-left: 1%;
+    background: none;
+}
+
+.Button-class{
+     display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:15vw;
+    margin-top: 0.9%;
+}
+
+.solid-button-class{
+    width: 65px;
+    height: 30px;
+    background-color: #E29578;
+    border: none;
+    color: white;
+    border-radius: 12px;
+}
+
+.icon-button-class{
+    background:None;
+    border:None;
+    margin-top:-1vh
+}
+
+.icon-class{
+    width: 32px;
+    height: 32px;
+}
+
+.whole-box{
+    display:flex ;
+    flex-direction : row ;
+    justify-content: space-evenly;
+}
+
+.book-class{
+    display:flex ;
+    flex-direction : column ;
+    margin-top : 30vh ;
+    margin-left:20vh;
+    position: fixed;
+    left: 0;
+    /*margin-left : 0vh ;*/
+}
+
+.upload-button{
+    margin-top : 8vh ;
+    width: 140px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 2px solid #83C5BE;
+    border-radius: 50px;
+}
+
+.list-class {
+    display : flex ;
+    flex-direction: column;
+    width: 60vw;
+    height: 67vh;
+    background: #FFFFFF;
+    border: 1px dashed #006D77;
+    box-sizing: border-box;
+    /*margin : 25px 30px 25px 30vh;*/
+    margin-top: 5.5rem;
+    margin-left:20vw;
+    position:fixed;
+    padding : 2rem 2rem 2rem 2rem;
+    justify-content : space-between;
+    overflow:auto;
+}
+
+.setting {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    margin : 26px;
+}
+
+.head-er{
+   font-size : 20px;
+    line-height : 27px;
+    font-weight : bold;
+    color : black;
+    justify-content: right;
+    margin-right: 20px;
+    margin-top: 8px;
+}
+
+.Text-class {
+   width: 75vh;
+    height: 3vh;
+    background: rgba(196, 196, 196, 0.25);
+    border-radius: 15px;
+    border : None ;
+    padding: 10px;
+}
+
+.Text-class-textarea
+{
+    background: rgba(196, 196, 196, 0.25);
+    border-radius: 15px;
+    border : None ;
+    padding: 10px;
+    resize: none;
+    margin-left:-8px;
+}
+
+.Text-class-textarea:focus{
+    outline-color: black;
+}
+
+.Text-class:focus{
+    outline-color: black;
+}
+
+.check-class {
+    margin: 20px 20px 0px 590px ;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-class {
+    margin : 20px;
+    background : None;
+    border : None ;
+}
+
+.button-class:hover{
+    cursor : pointer;
+}
+
+
+

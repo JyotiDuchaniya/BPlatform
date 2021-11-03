@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="Stylesheet" href="/static/css/Blog-Specific-Page.css" />
+    <base href="/" />
+    <title>Topic 1</title>
+</head>
+<body>
+    <script src="../static/js/Header-Functionality.js"></script>
+    <div class="header-class">
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <div class="searchbar-class">
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
+            <input type="text" placeholder="Search" class="search1-input-class" />
+        </div>
+        <div class="Button-class">
+            <button id="my-account-button"  class="icon-button-class" onclick="onClickMyAccount(this)">
+                <img src="../static/assets/myaccount.png" alt="my-account" class="icon-class" />
+            </button>
+            <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
+                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+            </button>
+        </div>
+    </div>
+    <article>
+        <div class="whole-blog">
+            <div class=blog>
+                <div class="post-content">
+                    <h1 class="post-title">{{ post.blog_title }}</h1>
+                    <p style="font-weight: bold;font-size: 14px;line-height: 22px;color: rgba(0, 0, 0, 0.58);">{{ post.blog_description }}</p>
+                </div>
+                <div class="blog-comment">
+                    <div class="single-comment">
+                        <h4 style="color: #E29578;">ABC:</h4>
+                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                    </div>
+                    <hr class="hr-class">
+                    <div class="single-comment">
+                        <h4 style="color: #E29578;">ABC:</h4>
+                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                    </div>
+                    <hr class="hr-class">
+                    <div class="single-comment">
+                        <h4 style="color: #E29578;">ABC:</h4>
+                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                    </div>
+                    <hr class="hr-class">
+                    <div class="single-comment">
+                        <h4 style="color: #E29578;">ABC:</h4>
+                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                    </div>
+                    <hr class="hr-class">
+                    <div class="single-comment">
+                        <h4 style="color: #E29578;">ABC:</h4>
+                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                    </div>
+                    <hr class="hr-class">
+                    <form action="/welcome/forum/{{ post.blog_id }}/comment" method="post">
+                    <div class="comment-input">
+                        <img src="../static/assets/AccountCircle.svg" class="account-circle-class"/>
+                        <textarea rows="4" cols="70" placeholder="Views" class="comment-input-class" name="text-area"></textarea>
+                        <button class="Post-comment-class" type="submit">Post</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="post-creation">
+                <h5>Created By: ABC</h5>
+                <div class="post-time">
+                    <h5>Created On: 11 Oct, 2021</h5>
+                    <h5>Updated On: 14 Oct, 2021</h5>
+                </div>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
