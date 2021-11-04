@@ -20,7 +20,7 @@
             <input type="text" placeholder="Search" class="search1-input-class" />
         </div>
         <div class="Button-class">
-            <button id="my-account-button"  class="icon-button-class" onclick="onClickMyAccount(this)">
+            <button id="my-account-button"  class="icon-button-class" onclick="addEventListener('click', () => {window.location= '/users/buy/my-account';});">
                 <img src="../static/assets/myaccount.png" alt="my-account" class="icon-class" />
             </button>
             <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
@@ -33,34 +33,24 @@
             <div class=blog>
                 <div class="post-content">
                     <h1 class="post-title">{{ post.blog_title }}</h1>
-                    <p style="font-weight: bold;font-size: 14px;line-height: 22px;color: rgba(0, 0, 0, 0.58);">{{ post.blog_description }}</p>
+                    <p style="font-weight: bold;font-size: 14px;line-height: 22px;color: rgba(0, 0, 0, 0.58);text-align: justify;">{{ post.blog_description }}</p>
                 </div>
                 <div class="blog-comment">
+                    {% if comments %}
+                    {% for i in comments %}
                     <div class="single-comment">
-                        <h4 style="color: #E29578;">ABC:</h4>
-                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                        <h4 style="color: #E29578;">{{ i[0] }}:</h4>
+                        <div class="comment">
+                            <h5 style="width: 43vw;text-align: justify;">{{ i[1] }}</h5>
+                            <h6 style="align-self: end;">{{ i[2] }}</h6>
+                        </div>
                     </div>
                     <hr class="hr-class">
-                    <div class="single-comment">
-                        <h4 style="color: #E29578;">ABC:</h4>
-                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
-                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h4 style="margin:5vh;">No comments yet</h4>
                     <hr class="hr-class">
-                    <div class="single-comment">
-                        <h4 style="color: #E29578;">ABC:</h4>
-                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
-                    </div>
-                    <hr class="hr-class">
-                    <div class="single-comment">
-                        <h4 style="color: #E29578;">ABC:</h4>
-                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
-                    </div>
-                    <hr class="hr-class">
-                    <div class="single-comment">
-                        <h4 style="color: #E29578;">ABC:</h4>
-                        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
-                    </div>
-                    <hr class="hr-class">
+                    {% endif %}
                     <form action="/welcome/forum/{{ post.blog_id }}/comment" method="post">
                     <div class="comment-input">
                         <img src="../static/assets/AccountCircle.svg" class="account-circle-class"/>
@@ -71,10 +61,9 @@
                 </div>
             </div>
             <div class="post-creation">
-                <h5>Created By: ABC</h5>
+                <h5>Created By: {{ post.blog_author }}</h5>
                 <div class="post-time">
-                    <h5>Created On: 11 Oct, 2021</h5>
-                    <h5>Updated On: 14 Oct, 2021</h5>
+                    <h5>Created On: {{ post.blog_time }}</h5>
                 </div>
             </div>
         </div>

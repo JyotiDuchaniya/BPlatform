@@ -239,8 +239,11 @@ def new_post():
 
 @app.route('/welcome/forum/<string:blog_id>')
 def post_specific(blog_id):
+    comments= None
     post = Blogs.one_post(blog_id)
-    return render_template('Blog-Specific-Page.html', post=post)
+    comments = Blogs.comments(blog_id)
+    total_comments= len(comments)
+    return render_template('Blog-Specific-Page.html', post=post, comments=comments, total_comments=total_comments)
 
 
 @app.route('/welcome/forum/<string:blog_id>/comment', methods=['POST'])

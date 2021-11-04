@@ -1,5 +1,5 @@
-import uuid
-from datetime import date, datetime
+import uuid,time
+from datetime import date, datetime, timezone
 
 from flask import session
 
@@ -39,7 +39,22 @@ class Blogs:
 
     @staticmethod
     def post_comment(name, comment, blogid):
-        timestamp= datetime.now()
-        commentpost = {timestamp: f'{name},{comment}'}
+        t= int(datetime.now(tz=timezone.utc).timestamp() * 1000)
+        # timestamp= int(time.mktime(t.timetuple()))
+        # print(timestamp)
+        commentpost = {t: f'{name}${comment}'}
         Database.update(collection='forum', data=f"blog_comment = blog_comment + {commentpost}",
                         query=f"blog_id=\'{blogid}\'")
+
+    @staticmethod
+    def comments(blogid):
+        blog = Database.find(collection='forum', query=f"blog_id=\'{blogid}\'")
+        comments=[]
+        if blog.blog_comment is not None:
+            for i in sorted(blog.blog_comment):
+                x= blog.blog_comment[i].split('$')
+                x.append(i.strftime("%b %d,%Y"))
+                comments.append(x)
+            return comments
+        else:
+            return None

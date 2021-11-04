@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>My-cart</title>
-    <link rel="Stylesheet" href="../static/css/My-cart.css" />
+    <link rel="Stylesheet" href="/static/css/My-cart.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/" />
 </head>
 <body>
-    <script src="../static/js/My-Cart-Functionality.js"></script>
-    <script src="../static/js/Header-Functionality.js"></script>
+    <script src="/static/js/My-Cart-Functionality.js"></script>
+    <script src="/static/js/Header-Functionality.js"></script>
     <div class="header-class">
-        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
         <form action="/books/search" method="post">
         <div class="searchbar-class">
             <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
@@ -24,7 +25,7 @@
             <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
             <div class="dropdown">
                 <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
-                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                    <img src="/static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
                 </button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="/users/buy/my-account">My Account</a>
@@ -32,13 +33,13 @@
                 </div>
             </div>
             <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
-                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+                <img src="/static/assets/discuss.png" alt="discuss"  class="icon-class" />
             </button>
             <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
-                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+                <img src="/static/assets/my-cart.png" alt="my-cart" class="icon-class" />
             </button>
             <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
-                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+                <img src="/static/assets/logout.png" alt="logout" class="icon-class" />
             </button>
         </div>
     </div>

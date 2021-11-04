@@ -47,8 +47,7 @@
 .Button-class{
      display:flex;
     flex-direction: row;
-    justify-content: space-around;
-    width:15vw;
+    width:fir-content;
     margin-top: 0.9%;
 }
 
@@ -108,7 +107,16 @@ margin-bottom: 2vh;
 }
 
 .single-comment {
+display:flex;
+flex-direction:column;
+justify-content:space-between;
 padding:2vh;
+}
+
+.comment{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
 }
 
 .comment-input {
