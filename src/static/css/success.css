@@ -1,0 +1,27 @@
+.center {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.success-image{
+    height: 50vh;
+    margin-top: 10vh;
+}
+
+.success{
+margin-right:0;
+color: #83C4BE;
+font-size: 2.5rem;
+}
+
+.gotohome {
+margin-right:0;
+text-decoration:none;
+margin-top:3vh;
+}
+
+.gotohome:hover {
+pointer:cursor;
+}

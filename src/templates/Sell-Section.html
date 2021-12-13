@@ -1,28 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../static/css/Login.css" />
+    <link rel="stylesheet" href="../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../static/css/My-Order-History.css" />
     <link rel="stylesheet" href="../static/css/Sell-Section.css" />
-    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Sell Content </title></head>
-<body>
+    <link rel="stylesheet" href="../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
     <script src="../static/js/Header-Functionality.js"></script>
-  <div class="header-class">
-        <img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/>
+    <script src="../static/js/My-Account-Functionality.js"></script>
+    <script src="../static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+    <div class="header-class">
+        <img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class-sell" id='logo' onclick="onClickLogo(this)"/>
         <div class="Button-class">
             <button class="solid-button-class" id="buy-button" onclick="onClickBuyButton(this)">Buy</button>
+            {% if email %}
             <button id="my-account-button" onclick="addEventListener('click', () => {window.location= '/users/sell/my-account';});" class="icon-button-class">
-                <img src="../static/assets/myaccount.png" alt="my-account" />
+                <img src="../static/assets/AccountCircle.png" alt="my-account" class="icon-class my-account"/>
             </button>
             <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class"><img src="../static/assets/discuss.png" alt="discuss" style="width: 32px;height: 32px;" /></button>
             <button id="my-book-list" onclick="onClickBookListButton(this)" class="icon-button-class"><img src="../static/assets/list.png" alt="my-cart"  /></button>
-            <button id="logout" onclick="onClickLogOut(this)" class="icon-button-class" ><img src="../static/assets/logout.png" alt="logout" style="height:26px" /></button>
+            <button id="logout-button" onclick="onClickLogOut(this)" class="icon-button-class" ><img src="../static/assets/logout.png" alt="logout" style="height:26px" /></button>
+            {% else %}
+            <button class="button-class-login-header" onclick="login()">Login</button>
+            {% endif %}
         </div>
   </div>
     <article class="whole-box">
@@ -91,5 +103,4 @@
             </form>
         </box>
     </article>
-</body>
-</html>
+{% endblock %}

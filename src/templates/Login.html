@@ -1,42 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/Login.css" />
-    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Login</title>
-<!--    <base href="/" />-->
-</head>
-<body>
-    <div>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../static/css/Login.css" />
+    <link rel="stylesheet" href="../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="../static/js/Header-Functionality.js"></script>
+    <script src="../static/js/My-Account-Functionality.js"></script>
+    <script src="/static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+
+    <div class="login-whole-page">
         <img src="../static/assets/BPlatform.svg" alt='BPlatform' class='logo-class'/>
         <div>
             <box>
                 <form action="/login" class='login-class' method="POST">
                     <h1 class='Login-header-class'>LOGIN</h1>
-                    <div class="input-class">
+                    <div class="input-class-login">
                         <div class="emailpass-input">
-                            <img src="../static/assets/email.png" class='icon-class' />
+                            <img src="../static/assets/email.png" class='icon-class-login' />
                             <input type="email" placeholder="Email Address" class="input-class-text Email" id="email" name="email" />
                         </div>
                         <div class="emailpass-input">
-                            <img src="../static/assets/padlock.png" class='icon-class lock' />
+                            <img src="../static/assets/padlock.png" class='icon-class-login lock' />
                             <input type="password" placeholder="Password" class="input-class-text Password" id="password" name="password" />
                         </div>
                     </div>
-                    <button type='submit' class="button-class">
+                    <button type='submit' class="button-class-login-page">
                         <img src ="../static/assets/Button.png" alt='Login' />
                     </button>
-                    <h5 class="Signup-class">Don't have an account? <a href="/signup">SignUp</a> </h5>
+                    <h5 class="Signup-class">Don't have an account? <a href="/register">SignUp</a> </h5>
                 </form>
+                {% if code == 301 %}
+                    <iframe src="alert.html"></iframe>
+                {% endif %}
             </box>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,40 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/Forum-Main-Page.css" />
-    <title>Forum</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../static/css/Login.css" />
+    <link rel="stylesheet" href="../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
     <script src="../static/js/Header-Functionality.js"></script>
+    <script src="../static/js/My-Account-Functionality.js"></script>
+    <script src="../static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+
     <div class="header-class">
         <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
-        <div class="searchbar-class">
-            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
-            <input type="text" placeholder="Search" class="search1-input-class" />
+        <div class="searchbar-class" >
+            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" style="margin-top: 0.5vh !important" />
+            <input type="text" placeholder="Search" class="search1-input-class" style="margin-top: 1vh !important" />
         </div>
-        <div class="Button-class">
+        <div class="Button-class" style="width:10vh;">
+            {% if email %}
             <button id="my-account-button"  class="icon-button-class" onclick="addEventListener('click', () => {window.location= '/users/buy/my-account';});">
                 <embed src="../static/assets/myaccount.png" alt="my-account" class="icon-class" />
             </button>
             <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
                 <embed src="../static/assets/logout.png" alt="logout" class="icon-class" />
             </button>
+            {% else %}
+            <button class="button-class-login" onclick="login()">Login</button>
+            {% endif %}
         </div>
     </div>
     <article class="whole-forum">
         {% if posts %}
         <div class="all-blogs">
                 {% for i in posts %}
-                <div class="one-blog">
+                <div class="one-blog" onclick="window.location='/welcome/forum/{{ i.blog_id }}'">
                     <div class="blog-content-title">
                         <h3 style="font-weight:bolder !important">{{ i.blog_title }}</h3>
+                        {% if i.blog_description|length > 400 %}
                         <h5 class="blog-content">{{ i.blog_description[:400] }}...<a href="/welcome/forum/{{ i.blog_id }}">Read More</a></h5>
+                        {% else %}
+                        <h5 class="blog-content">{{ i.blog_description }}</h5>
+                        {% endif %}
                     </div>
                     <div class="blog-author-date">
                         <h4>By: {{ i.blog_author }}</h4>
@@ -49,6 +67,7 @@
         {% else %}
                 <h2 class="no-posts">No Posts available</h2>
         {% endif %}
+        {% if email %}
         <form action="/welcome/forum" method="post">
             <div class="create-blog">
                 <h1>POST SOMETHING...</h1>
@@ -57,6 +76,8 @@
                 <button class="Post-Button" type="submit">Post</button>
             </div>
         </form>
+        {% else %}
+        <h4><a href="/login">Login</a> to review</h4>
+        {% endif %}
     </article>
-</body>
-</html>
+{% endblock %}

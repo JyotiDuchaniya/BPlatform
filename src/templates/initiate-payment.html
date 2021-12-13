@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/base.css" />
+    <link rel="stylesheet" href="../../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../../static/css/Login.css" />
+    <link rel="stylesheet" href="../../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="../../static/js/Header-Functionality.js"></script>
+    <script src="../../static/js/My-Account-Functionality.js"></script>
+    <script src="../../static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+    <article>
+        <div class="header-class">
+            <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+            <form action="/books/search" method="post">
+                <div class="searchbar-class">
+                    <img src="../../static/assets/search.png" alt="searchIcon" class="search-icon" />
+                    <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+                </div>
+            </form>
+            <div class="Button-class">
+                <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
+                <div class="dropdown">
+                    <button id="my-account-button"  class="icon-button-class my-account " onclick="onClickMyAccount()">
+                        <img src="../../static/assets/AccountCircle.png" alt="my-account" class="my-account-icon icon-class" style="" />
+                    </button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="/users/buy/my-account">My Account</a>
+                        <a href="/users/buy/order-history">Order History</a>
+                    </div>
+                </div>
+                <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class icon-class">
+                    <img src="../../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+                </button>
+                <button id="my-cart-button"  class="icon-button-class icon-class" onclick="onClickMyCart(this)">
+                    <img src="../../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+                </button>
+                <button id="logout-button" class="icon-button-class icon-class" onclick="onClickLogOut(this)">
+                    <img src="../../static/assets/logout.png" alt="logout"  />
+                </button>
+            </div>
+        </div>
+        <box class="box-class">
+            <img src="../../static/assets/payment-image.png" class="payment-image" />
+            <button id="rzp-button1" class="pay-button" >Pay</button>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+                var options = {
+                "key": "rzp_test_kJDRaiqaU5kUyN", // Enter the Key ID generated from the Dashboard
+                "amount": "{{ payment['amount'] }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "Acme Corp",
+                "description": "Test Transaction",
+                "image": "https://example.com/your_logo",
+                "order_id": "{{ payment['order_id'] }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "callback_url": "/users/buy/pay/success",
+<!--                "handler": function (response){-->
+<!--                    razorpay_payment_id= response.razorpay_payment_id;-->
+<!--                    razorpay_order_id= response.razorpay_order_id;-->
+<!--                    razorpay_signature= response.razorpay_signature;-->
+<!--                },-->
+<!--                "prefill": {-->
+<!--                    "name": "Gaurav Kumar",-->
+<!--                    "email": "gaurav.kumar@example.com",-->
+<!--                    "contact": "9999999999"-->
+<!--                },-->
+<!--                "notes": {-->
+<!--                    "address": "Razorpay Corporate Office"-->
+<!--                },-->
+<!--                "theme": {-->
+<!--                    "color": "#3399cc"-->
+<!--                }-->
+                };
+                var rzp1 = new Razorpay(options);
+<!--                rzp1.on('payment.failed', function (response){-->
+<!--                        alert(response.error.code);-->
+<!--                        alert(response.error.description);-->
+<!--                        alert(response.error.source);-->
+<!--                        alert(response.error.step);-->
+<!--                        alert(response.error.reason);-->
+<!--                        alert(response.error.metadata.order_id);-->
+<!--                        alert(response.error.metadata.payment_id);-->
+<!--                });-->
+                document.getElementById('rzp-button1').onclick = function(e){
+                    rzp1.open();
+                    e.preventDefault();
+                }
+            </script>
+        </box>
+    </article>
+{% endblock %}

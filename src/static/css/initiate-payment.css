@@ -1,0 +1,29 @@
+
+.box-class{
+    display:flex;
+    flex-direction:row;
+    padding:5vh;
+    justify-content: space-between;
+    margin-top: 6vh;
+}
+
+.payment-image{
+    height: 70vh;
+    width: 50vw;
+}
+
+.pay-button {
+    height: 7vh;
+    width: 10vw;
+    margin: 30vh 15vw;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 2px solid #83C5BE;
+    font-size: 18px;
+}
+
+.pay-button:hover {
+cursor: pointer;
+background: rgba(131, 197, 190, 0.15);
+border:none
+}

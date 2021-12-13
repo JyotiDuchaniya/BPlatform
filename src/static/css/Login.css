@@ -1,7 +1,6 @@
-* {
-    margin:0;
-    background-color: #83C5BE;
-    font-family: 'Nunito', sans-serif;
+.login-whole-page{
+background: #83C5BE;
+height: 100vh;
 }
 
 .logo-class {
@@ -15,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     border: 2px dashed white;
-    margin: 7vh 50vh 5vh 50vh;
+    margin: 7vh 0vw 7vh 30vw;
     padding: 5vh;
     height: fit-content;
     width: fit-content;
@@ -27,7 +26,7 @@
     margin-top: 20px;
 }
 
-.input-class {
+.input-class-login {
     display: flex;
     flex-direction: column;
     margin: 7vh;
@@ -37,7 +36,7 @@
     position: relative;
 }
 
-.icon-class{
+.icon-class-login{
     position: absolute;
     width:30px;
     height:20px;
@@ -74,9 +73,9 @@
     font-family: 'Nunito', sans-serif;
 }
 
-.button-class{
+.button-class-login-page{
     border:none;
-
+    background: #83C5BE;
 }
 
 .Signup-class{

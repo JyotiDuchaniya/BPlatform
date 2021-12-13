@@ -20,7 +20,7 @@ function onClickMyAccount() {
 function onClickDiscuss(element) {
         const my_account_icon = document.getElementById('discuss-button');
         my_account_icon.addEventListener('click', () => {
-                window.location= '/forum';
+                window.location= '/welcome/forum';
             });
 }
 

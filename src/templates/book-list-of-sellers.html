@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/Welcome.css" />
+    <link rel="Stylesheet" href="/static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="/static/css/Book-Detail-Page.css" />
     <link rel="stylesheet" href="/static/css/book-list-for-sellers.css" />
-    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <base href="/" />
-    <title>User's Book Status</title>
-</head>
-<body>
+    <link rel="stylesheet" href="/static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="/static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="/static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="/static/css/Login.css" />
+    <link rel="stylesheet" href="/static/css/My-Account.css" />
+    <link rel="Stylesheet" href="/static/css/My-cart.css" />
+    <link rel="stylesheet" href="/static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="/static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="/static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="/static/js/Header-Functionality.js"></script>
+    <script src="/static/js/My-Account-Functionality.js"></script>
+    <script src="/static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
 <script>
-    function sellbooks(){
-    window.location = '/welcome/sell';
-    }
-    function onClick(element, idtest) {
+    function onClickViewDetails(element, idtest) {
             const open = document.getElementById(idtest);
             const modal = document.getElementById('modal_container');
             const close = document.getElementById('close');
@@ -28,25 +33,28 @@
                 modal.classList.remove('show');
             });
         }
-
-
 </script>
 <article class="whole-page-article-class">
-    <script src="/static/js/Header-Functionality.js"></script>
     <div class="header-class">
-        <img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/>
+        <img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class" style="margin-top: 5px;"onclick="onClickLogo(this)" id="logo" />
         <div class="Button-class">
             <button class="solid-button-class" id="buy-button" onclick="onClickBuyButton(this)">Buy</button>
             <button id="my-account-button" onclick="addEventListener('click', () => {window.location= '/users/sell/my-account';});" class="icon-button-class">
-                <img src="/static/assets/myaccount.png" alt="my-account" />
+                <img src="/static/assets/AccountCircle.png" alt="my-account" style="width: 32px;height: 32px;" />
             </button>
+            <div id="myDropdown" class="dropdown-content">
+                    <a href="/users/buy/my-account">My Account</a>
+                    <a href="/users/buy/order-history">Order History</a>
+                </div>
             <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class"><img src="/static/assets/discuss.png" alt="discuss" style="width: 32px;height: 32px;" /></button>
             <button id="my-book-list" onclick="onClickBookListButton(this)" class="icon-button-class"><img src="/static/assets/list.png" alt="my-cart"  /></button>
-            <button id="logout" onclick="onClickLogOut(this)" class="icon-button-class" ><img src="/static/assets/logout.png" alt="logout" style="height:26px" /></button>
+            <button id="logout-button" onclick="onClickLogOut(this)" class="icon-button-class" ><img src="/static/assets/logout.png" alt="logout" style="height:26px" /></button>
         </div>
     </div>
     <div class="All-books">
+        <button class="back-button-class" onclick="onclickbackbutton('sell')"><img src="/static/assets/arrow.png" class="arrow-class"></button>
         <button class="upload-more-books" onclick="sellbooks()">Upload More Books</button>
+        {% if booklist %}
         {% for i in booklist %}
         <div class="One-book-Detail">
             <div class="booklist-class">
@@ -60,13 +68,13 @@
                 <h1 class="price-class">{{i.b_price }} INR</h1>
                 <div class="Order-buttons">
 
-                    <button class="order-button order-details" id="view-details-{{ i.b_id }}" onclick="onClick(this, '{{ testid }}')">View Details</button>
+                    <button class="order-button order-details" id="view-details-{{ i.b_id }}" onclick="onClickViewDetails(this, '{{ testid }}')">View Details</button>
                     <button class="order-button Track-My-Order">Track Pickup</button>
                 </div>
                 <div id="modal_container" class="modal-container">
                 <div class="modal addressmodal">
                     <div class="modal-contents">
-                        <button id="close" class="close-btn closeaddress" onclick="onClick(this, '{{ testid }}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button id="close" class="close-btn closeaddress" onclick="onClickViewDetails(this, '{{ testid }}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <h3>Total Books Uploaded: {{ i.b_quantity }}</h3>
                         <h3>Books sold: 2</h3>
                         {% set book_left = i.b_quantity - 2 %}
@@ -77,8 +85,9 @@
             </div>
         </div>
         {% endfor %}
-
+        {% else %}
+        <h1 style="align-self: center;margin-top: 10vh;"> No book uploaded yet.</h1>
+        {% endif %}
     </div>
     </article>
-</body>
-</html>
+{% endblock  %}

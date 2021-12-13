@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+
+    {% block head %}
+    {% endblock %}
+    <title>{{ title }}</title>
+</head>
+<body>
+    <script>
+        function login(){
+        window.location= '/login';
+        }
+        function register(){
+        window.location= '/register';
+        }
+        function onclickbackbuttonbuy(){
+        window.location= '/welcome/buy';
+        }
+        function logoutbutton(){
+        window.location= '/users/logout';
+        }
+        function navigatetomyaccount(){
+        window.location= '/users/buy/my-account';
+        }
+        function sellbooks(){
+            window.location = '/welcome/sell';
+        }
+
+        function onclickbackbutton(type){
+            if (type == 'buy')
+                {
+                    window.location= '/welcome/buy';
+                }
+            else if (type == 'sell')
+                {
+                window.location= '/welcome/sell';
+                }
+        }
+        function onclicktrack(element, testid, orderid){
+            var coll = document.getElementById(testid);
+            coll.addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = document.getElementById(orderid);
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+                } else {
+                  content.style.display = "block";
+                }
+              });
+        }
+        function onclickviewdetails(element, modal_container, view_button_id, close_button_id){
+            const open_details = document.getElementById(view_button_id);
+            const modal_details = document.getElementById(modal_container);
+            const close_details = document.getElementById(close_button_id);
+            open_details.addEventListener('click', () => {
+                modal_details.classList.add('show');
+            });
+            close_details.addEventListener('click', () => {
+                modal_details.classList.remove('show');
+            });
+        }
+        function myFunction(){
+            var x = document.getElementById('snackbar');
+            x.classList.add("show");
+            setTimeout(function(){ x.classList.remove("show"); }, 3000);
+        }
+        function closepopup(){
+        var y = document.getElementById('snackbar');
+            y.classList.remove("show");
+        }
+
+    </script>
+    {% block script %}
+    {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert-{{ category }} test" role="alert" id='snackbar'>
+                <span class="alert-info">{{ message }}</span>
+                <button type="button" class="close cross-icon-button" data-dismiss="alert" aria-label="Close"  onclick="closepopup()">
+                <img src="/static/assets/close.png" class="cross-icon" onload="myFunction()" />
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block main %}
+    {% endblock %}
+</body>
+</html>

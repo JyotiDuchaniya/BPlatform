@@ -1,32 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/Buy-Contents-Main-Page.css" />
-    <link rel="import" href="Header-Sell.html" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Buy</title>             
-</head>
-<body>
-    <script src="../static/js/Header-Functionality.js"></script>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/Welcome.css" />
+    <link rel="Stylesheet" href="/static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="/static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="/static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="/static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="/static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="/static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="/static/css/Login.css" />
+    <link rel="stylesheet" href="/static/css/My-Account.css" />
+    <link rel="Stylesheet" href="/static/css/My-cart.css" />
+    <link rel="stylesheet" href="/static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="/static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="/static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="/static/js/Header-Functionality.js"></script>
+    <script src="/static/js/My-Account-Functionality.js"></script>
+    <script src="/static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+
     <div class="header-class">
-        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
-        <form action="/books/search" method="post">
-        <div class="searchbar-class">
-            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
-            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <form action="/welcome/buy/search" method="post">
+            <div class="searchbar-class">
+                <img src="/static/assets/search.png" alt="searchIcon" class="search-icon" />
+                <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+            </div>
         </form>
-        </div>
         <div class="Button-class">
+            {% if email: %}
             <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
             <div class="dropdown">
                 <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
-                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                    <img src="/static/assets/AccountCircle.png" alt="my-account" class="icon-class my-account" />
                 </button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="/users/buy/my-account">My Account</a>
@@ -34,14 +43,17 @@
                 </div>
             </div>
             <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
-                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+                <img src="/static/assets/discuss.png" alt="discuss"  class="icon-class" />
             </button>
             <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
-                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+                <img src="/static/assets/my-cart.png" alt="my-cart" class="icon-class"/>
             </button>
             <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
-                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+                <img src="/static/assets/logout.png" alt="logout" class="icon-class" />
             </button>
+            {% else %}
+            <button class="button-class-login-header" onclick="login()">Login</button>
+            {% endif %}
         </div>
     </div>
     <div class="whole-content">
@@ -94,9 +106,10 @@
                 {% for i in data %}
                 <a href="/welcome/buy/{{ i.b_id }}" style="text-decoration: none;color:inherit">
                <div class="outer-box-class">
-                    <div class="book-class">
+                    <div class="book-class-buy-main">
                         <h3 style="font-weight: bolder;width:50vh">{{ i.b_title }}</h3>
                         <h5 class="author-class">Author: {{ i.b_author }}</h5>
+                        {% if i.b_avg %}
                         {% set round_average = '%0.1f'| format(i.b_avg|float) %}
                         {% if i.b_avg >= 3 %}
                             {% set color= 'green' %}
@@ -107,24 +120,35 @@
                         {% endif %}
                             <div class="rating-number {{ color }}">
                                 <h5 style="margin: 0.5vh ;">{{ round_average }}</h5>
-                                <span class="fa fa-star star"></span>
+                                <span class="fa fa-star star buy-page"></span>
                             </div>
+                        {% endif %}
                     </div>
                 </a>
                 <h1 class="price-class">{{ i.b_price }} INR</h1>
                 {% if cartbook != [] %}
                         {% if i.b_id in cartbook %}
                             <button type="button"  style="background:None;border:None" disabled >
-                                <img src="../static/assets/check.png" class="add-to-cart-class" />
+                                <img src="/static/assets/check.png" class="add-to-cart-class" />
                             </button>
                         {% else %}
-                            <button type="button" id="add-to-cart-button-new" style="background:None;border:None" onclick="addEventListener('click', () => {window.location= '/welcome/buy/{{ i.b_id }}/add-to-cart';});" >
-                                <img src="../static/assets/add-to-cart.png" class="add-to-cart-class" />
+                            <button type="button" id="add-to-cart-button-new" style="background:None;border:None" onclick="{% if email: %}
+                                                                                                   addEventListener('click', () => {window.location= '/welcome/buy/main/{{ i.b_id }}';});
+                                                                                                    {% else %}
+                                                                                                    addEventListener('click', () => {window.location= '/login';});
+                                                                                                    {% endif %}
+                                                                                                    ">
+                                <img src="/static/assets/add-to-cart.png" class="add-to-cart-class" />
                             </button>
                         {% endif %}
                 {% else %}
-                    <button type="button" id="add-to-cart-button" style="background:None;border:None" onclick="addEventListener('click', () => {window.location= '/welcome/buy/{{ i.b_id }}/add-to-cart}';});" >
-                        <img src="../static/assets/add-to-cart.png" class="add-to-cart-class" />
+                    <button type="button" id="add-to-cart-button" style="background:None;border:None" onclick="{% if email: %}
+                                                                                                   addEventListener('click', () => {window.location= '/welcome/buy/main/{{ i.b_id }}';});
+                                                                                                    {% else %}
+                                                                                                    addEventListener('click', () => {window.location= '/login';});
+                                                                                                    {% endif %}
+                                                                                                    ">
+                        <img src="/static/assets/add-to-cart.png" class="add-to-cart-class" />
                     </button>
                 {% endif %}
 
@@ -134,6 +158,4 @@
                     <h2 class="nobookavailable">No Books match your search</h2>
         {% endif %}
         </div>
-    </div>
-</body>
-</html>
+{% endblock %}

@@ -1,34 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link rel="Stylesheet" href="/static/css/Blog-Specific-Page.css" />
-    <base href="/" />
-    <title>Topic 1</title>
-</head>
-<body>
-    <script src="../static/js/Header-Functionality.js"></script>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/base.css" />
+    <link rel="stylesheet" href="../../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../../static/css/Login.css" />
+    <link rel="stylesheet" href="../../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="../../static/js/Header-Functionality.js"></script>
+    <script src="../../static/js/My-Account-Functionality.js"></script>
+    <script src="../../static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+
     <div class="header-class">
-        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
         <div class="searchbar-class">
-            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
-            <input type="text" placeholder="Search" class="search1-input-class" />
+            <img src="../../static/assets/search.png" alt="searchIcon" class="search-icon" style="margin-top: 0.5vh !important"/>
+            <input type="text" placeholder="Search" class="search1-input-class" style="margin-top: 1vh !important" />
         </div>
-        <div class="Button-class">
+        <div class="Button-class" style="width:10vh;">
+            {% if email %}
             <button id="my-account-button"  class="icon-button-class" onclick="addEventListener('click', () => {window.location= '/users/buy/my-account';});">
-                <img src="../static/assets/myaccount.png" alt="my-account" class="icon-class" />
+                <img src="../../static/assets/myaccount.png" alt="my-account" class="icon-class" />
             </button>
             <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
-                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+                <img src="../../static/assets/logout.png" alt="logout" class="icon-class" />
             </button>
+            {% else %}
+            <button class="button-class-login" onclick="login()">Login</button>
+            {% endif %}
         </div>
     </div>
     <article>
+        <button class="back-button-class" onclick="window.location='/welcome/forum'"><img src="/static/assets/arrow.png" class="arrow-class"></button>
         <div class="whole-blog">
             <div class=blog>
                 <div class="post-content">
@@ -45,19 +59,23 @@
                             <h6 style="align-self: end;">{{ i[2] }}</h6>
                         </div>
                     </div>
-                    <hr class="hr-class">
+                    <hr>
                     {% endfor %}
                     {% else %}
                     <h4 style="margin:5vh;">No comments yet</h4>
-                    <hr class="hr-class">
+                    <hr>
                     {% endif %}
+                    {% if email %}
                     <form action="/welcome/forum/{{ post.blog_id }}/comment" method="post">
                     <div class="comment-input">
-                        <img src="../static/assets/AccountCircle.svg" class="account-circle-class"/>
+                        <img src="../../static/assets/AccountCircle.png" class="account-circle-class-blog"/>
                         <textarea rows="4" cols="70" placeholder="Views" class="comment-input-class" name="text-area"></textarea>
                         <button class="Post-comment-class" type="submit">Post</button>
                     </div>
                     </form>
+                    {% else %}
+                    <h4><a href="/login">Login</a>to comment</h4>
+                    {% endif %}
                 </div>
             </div>
             <div class="post-creation">
@@ -68,5 +86,4 @@
             </div>
         </div>
     </article>
-</body>
-</html>
+{% endblock %}

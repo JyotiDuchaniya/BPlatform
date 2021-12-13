@@ -1,31 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My-cart</title>
-    <link rel="Stylesheet" href="/static/css/My-cart.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <base href="/" />
-</head>
-<body>
-    <script src="/static/js/My-Cart-Functionality.js"></script>
-    <script src="/static/js/Header-Functionality.js"></script>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/base.css" />
+    <link rel="stylesheet" href="../../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../../static/css/Login.css" />
+    <link rel="stylesheet" href="../../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="../../static/js/Header-Functionality.js"></script>
+    <script src="../../static/js/My-Account-Functionality.js"></script>
+    <script src="../../static/js/My-Cart-Functionality.js"></script>
+<!--    <script>-->
+<!--        window.onbeforeunload = function(){-->
+<!--        var xmlhttp = new XMLHttpRequest();-->
+<!--        URL= '/test';-->
+<!--        xmlhttp.open("POST", URL, false);-->
+<!--        console.log('check');-->
+<!--        }-->
+<!--    </script>-->
+{% endblock %}
+{% block main %}
+<article>
     <div class="header-class">
         <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
-        <form action="/books/search" method="post">
-        <div class="searchbar-class">
-            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
-            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        <form action="/welcome/buy/search" method="post">
+            <div class="searchbar-class">
+                <img src="../../static/assets/search.png" alt="searchIcon" class="search-icon" />
+                <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+            </div>
         </form>
-        </div>
         <div class="Button-class">
             <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
             <div class="dropdown">
                 <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
-                    <img src="/static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                    <img src="../../static/assets/AccountCircle.png" alt="my-account" class="my-account-icon" style="width: 32px;height: 32px;" />
                 </button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="/users/buy/my-account">My Account</a>
@@ -44,6 +61,7 @@
         </div>
     </div>
     <div class="whole-page">
+        <button class="back-button-class" onclick="onclickbackbutton('buy')"><img src="../../static/assets/arrow.png" class="arrow-class"></button>
         <div class="cart-details">
             <div class="order-and-address">
 
@@ -52,16 +70,16 @@
                     {% for i in cartbook %}
                     <div class="order">
 
-                        <div class="book-order-class">
+                        <div class="book-order-class-my-cart">
                             <h3 style="font-weight: bolder;">{{ i.b_title }}</h3>
                             <h5 class="author-class">Author: {{ i.b_author }}</h5>
                             <div class="add-remove">
-                                <button class="icon" onclick="addEventListener('click', () => {window.location= '/users/my-cart/add-book/{{ i.b_id }}';});">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                <button class="icon" onclick="addEventListener('click', () => {window.location= '/users/buy/my-cart/add-book/{{ i.b_id }}';});">
+                                    <i class="fa fa-plus icon-cart" aria-hidden="true"></i>
                                 </button>
                                 <h5 class="input-class-item">{{ user.u_cart[i.b_id] }}</h5>
-                                <button class="icon" onclick="addEventListener('click', () => {window.location= '/users/my-cart/delete-book/{{ i.b_id }}';});">
-                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                <button class="icon" onclick="addEventListener('click', () => {window.location= '/users/buy/my-cart/delete-book/{{ i.b_id }}';});">
+                                    <i class="fa fa-minus icon-cart" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -104,7 +122,8 @@
                 </div>
             </div>
         </div>
-        <button class="Place-order-button" >Place Order</button>
+        <form action="/users/buy/pay" method="get">
+        <button class="Place-order-button">Place Order</button></form>
         <div id="modal_container_address" class="modal-container">
             <div class="modal addressmodal">
                 <div class="modal-contents">
@@ -161,9 +180,7 @@
                     </form>
                 </div>
             </div>
-        </div
+        </div>
     </div>
-
-
-</body>
-</html>
+</article>
+{% endblock %}

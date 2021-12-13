@@ -1,37 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="Stylesheet" href="/static/css/Book-Detail-Page.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <base href="/" />
-</head>
-<body>
-<script>
-    function onclickbackbutton(){
-        window.location= '/welcome/buy';
-    }
-
-</script>
-    <script src="../static/js/Header-Functionality.js"></script>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/base.css" />
+    <link rel="stylesheet" href="../../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../../static/css/Login.css" />
+    <link rel="stylesheet" href="../../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="../../static/js/Header-Functionality.js"></script>
+    <script src="../../static/js/My-Account-Functionality.js"></script>
+    <script src="../../static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
     <div class="header-class">
-        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
-        <form action="/books/search" method="post">
-        <div class="searchbar-class">
-            <img src="../static/assets/search.png" alt="searchIcon" class="search-icon" />
-            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="../../static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
+        <form action="/welcome/buy/search" method="post">
+            <div class="searchbar-class">
+                <img src="../../static/assets/search.png" alt="searchIcon" class="search-icon" />
+                <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+            </div>
         </form>
-        </div>
         <div class="Button-class">
+            {% if email %}
             <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
             <div class="dropdown">
                 <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
-                    <img src="../static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                    <img src="../../static/assets/AccountCircle.png" alt="my-account" class="my-account-icon" style="width: 32px;height: 32px;" />
                 </button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="/users/buy/my-account">My Account</a>
@@ -39,20 +42,23 @@
                 </div>
             </div>
             <button id="discuss-button" onclick="onClickDiscuss(this)" class="icon-button-class">
-                <img src="../static/assets/discuss.png" alt="discuss"  class="icon-class" />
+                <img src="../../static/assets/discuss.png" alt="discuss"  class="icon-class" />
             </button>
             <button id="my-cart-button"  class="icon-button-class" onclick="onClickMyCart(this)">
-                <img src="../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
+                <img src="../../static/assets/my-cart.png" alt="my-cart" class="icon-class" />
             </button>
             <button id="logout-button" class="icon-button-class" onclick="onClickLogOut(this)">
-                <img src="../static/assets/logout.png" alt="logout" class="icon-class" />
+                <img src="../../static/assets/logout.png" alt="logout" class="icon-class" />
             </button>
+            {% else %}
+            <button class="button-class-login-header" onclick="login()">Login</button>
+            {% endif %}
         </div>
     </div>
     <div class="whole-book-detail">
-        <button class="back-button-class" onclick="onclickbackbutton()"><img src="../static/assets/arrow.png" class="arrow-class"></button>
+        <button class="back-button-class" onclick="onclickbackbuttonbuy()"><img src="../../static/assets/arrow.png" class="arrow-class"></button>
         <div class="image-button-class">
-            <img src="../static/assets/book 1.png" class="Book-Details-image-class" />
+            <img src="../../static/assets/book 1.png" class="Book-Details-image-class" />
 
             <div class="book-detail-button-class">
                 {% if flag == True %}
@@ -60,7 +66,12 @@
                         Added to cart
                     </button>
                 {% else %}
-                    <button class="book-detail-class Add-to-cart"   onclick="addEventListener('click', () => {window.location= '/welcome/buy/{{ book.b_id }}/add-to-cart';});">
+                    <button class="book-detail-class Add-to-cart"   onclick="{% if email %}
+                                                                              addEventListener('click', () => {window.location= '/welcome/buy/{{ book.b_id }}/add-to-cart';});
+                                                                             {% else %}
+                                                                             addEventListener('click', () => {window.location= '/login';});
+                                                                             {% endif %}
+                                                                             ">
                         Add to cart
                     </button>
                 {% endif %}
@@ -116,51 +127,100 @@
                     <h3 style="margin-left:2vh">Ratings and Review</h3>
                     <div class="rating-component">
                         <div class="average-rating">
-                            {% set average = ( 5*book.b_five + 4*book.b_four + 3*book.b_three + 2*book.b_two + 1*book.b_one)/( book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                            {% if book.b_five %}
+                            {% set five= book.b_five %}
+                            {% else %}
+                            {% set five =0 %}
+                            {% endif %}
+                            {% if book.b_four %}
+                            {% set four= book.b_four %}
+                            {% else %}
+                            {% set four =0 %}
+                            {% endif %}
+                            {% if book.b_three %}
+                            {% set three= book.b_three %}
+                            {% else %}
+                            {% set three =0 %}
+                            {% endif %}
+                            {% if book.b_two %}
+                            {% set two= book.b_two %}
+                            {% else %}
+                            {% set two =0 %}
+                            {% endif %}
+                            {% if book.b_one %}
+                            {% set one= book.b_one %}
+                            {% else %}
+                            {% set one =0 %}
+                            {% endif %}
+                            {% if five>0 or four>0 or three>0 or two>0 or one>0 %}
+                            {% set average = ( 5*five + 4*four + 3*three + 2*two + 1*one)/( five + four + three + two +one) %}
+                            {% else %}
+                            {% set average = 0 %}
+                            {% endif %}
                             {% set round_average = '%0.1f'| format(average|float) %}
                             <h3>{{ round_average }}</h3>
-                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star average-star"></span>
                         </div>
                         <div class="entire-rating">
                             <div class="rating-bar">
                                 <h5 style="margin-right: 1vh" >5 star</h5>
-                                {% set five_percent = (book.b_five*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                {% if five>0 %}
+                                {% set five_percent = (five*100)/(five + four + three + two +one) %}
+                                {% else %}
+                                {% set five_percent = 0 %}
+                                {% endif %}
                                 <div class="bar-container">
                                     <div class="bar-5" style="width: {{ five_percent }}%;"></div>
                                 </div>
-                                <h5 >{{ book.b_five }}</h5>
+                                <h5 >{{ five }}</h5>
                             </div>
                             <div class="rating-bar">
                                 <h5 style="margin-right: 1vh;">4 star</h5>
-                                {% set four_percent = (book.b_four*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                {% if four>0 %}
+                                {% set four_percent = (four*100)/(five + four + three + two +one) %}
+                                {% else %}
+                                {% set four_percent = 0 %}
+                                {% endif %}
                                 <div class="bar-container">
                                     <div class="bar-4" style="width: {{ four_percent }}%;"></div>
                                 </div>
-                                <h5 >{{ book.b_four }}</h5>
+                                <h5 >{{ four }}</h5>
                             </div>
                             <div class="rating-bar">
                                 <h5 style="margin-right: 1vh;">3 star</h5>
-                                {% set three_percent = (book.b_three*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                {% if three>0 %}
+                                {% set three_percent = (three*100)/(five + four + three + two +one) %}
+                                {% else %}
+                                {% set three_percent = 0 %}
+                                {% endif %}
                                 <div class="bar-container">
                                     <div class="bar-3" style="width: {{ three_percent }}%;"></div>
                                 </div>
-                                <h5 >{{ book.b_three }}</h5>
+                                <h5 >{{ three }}</h5>
                             </div>
                             <div class="rating-bar">
                                 <h5 style="margin-right: 1vh;">2 star</h5>
-                                {% set two_percent = (book.b_two*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                {% if two>0 %}
+                                {% set two_percent = (two*100)/(five + four + three + two +one) %}
+                                {% else %}
+                                {% set two_percent = 0 %}
+                                {% endif %}
                                 <div class="bar-container">
                                     <div class="bar-2" style="width: {{ two_percent }}%;"></div>
                                 </div>
-                                <h5 >{{ book.b_two }}</h5>
+                                <h5 >{{ two }}</h5>
                             </div>
                             <div class="rating-bar">
                                 <h5 style="margin-right: 1vh;">1 star</h5>
-                                {% set one_percent = (book.b_one*100)/(book.b_five + book.b_four + book.b_three + book.b_two +book.b_one) %}
+                                {% if one>0 %}
+                                {% set one_percent = (one*100)/(five + four + three + two +one) %}
+                                {% else %}
+                                {% set one_percent = 0 %}
+                                {% endif %}
                                 <div class="bar-container">
                                     <div class="bar-1" style="width: {{ one_percent }}%;"></div>
                                 </div>
-                                <h5 >{{ book.b_one }}</h5>
+                                <h5 >{{ one }}</h5>
                             </div>
                         </div>
                     </div>
@@ -183,16 +243,17 @@
                             {% endif %}
                             <div class="rating-number {{ color }}">
                                 <h5 style="margin: 0.5vh ;">{{ book.b_review[r] }}</h5>
-                                <span class="fa fa-star star"></span>
+                                <span class="fa fa-star star star-given"></span>
                             </div>
                             <div class="rating-description">
-                                <p style="margin:0.5vh;">{{ r }}</p>
+                                <p style="margin-top:2vh;">{{ r }}</p>
                             </div>
                         </div>
                     </div>
                     <hr class="hr-class" >
                     {% endfor %}
                     {% endif %}
+                    {% if email %}
                     <form action="/welcome/buy/{{ book.b_id }}/review" method="post">
                     <div class="enter-star">
                         <input type="radio" name="star" id="star1" value="5"><label for="star1"></label>
@@ -202,14 +263,16 @@
                         <input type="radio" name="star" id="star5" value="1"><label for="star5"></label>
                     </div>
                     <div class="rating-input">
-                        <img src="../static/assets/AccountCircle.svg" class="account-circle-class"/>
+                        <img src="../../static/assets/AccountCircle.png" class="account-circle-class"/>
                         <textarea rows="4" cols="70" placeholder="Enter your review" class="rating-input-class" name="rating-input-class"></textarea>
                         <button class="Post-class" type="submit">Post</button>
                     </div>
                     </form>
+                    {% else %}
+                    <h4><a href="/login">Login</a> to comment</h4>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,8 @@
-* {
-    margin:0
-}
 .whole-box {
     display:flex;
     flex-direction: row;
 }
+
 .buy-container{
     display: flex;
     width: 50vw;
@@ -29,14 +27,14 @@
 .buy-heading-class{
     display: flex;
     align-items: center;
-    margin-top: 36%;
+    margin-top: 32vh;
     flex-direction: column;
 }
 
 .sell-heading-class{
     display: flex;
     align-items: center;
-    margin-top: 42.3vh;
+    margin-top: 31vh;
     flex-direction: column;
 }
 
@@ -60,7 +58,7 @@
 
 }
 
-.button-class{
+.button-class-welcome{
     display: flex;
     align-self: flex-end;
     margin: 5% 5% 0 0;
@@ -93,10 +91,23 @@
     color: white;
 }
 
+.button-class-signup:hover {
+pointer: cursor;
+}
+
+.button-class-login:hover {
+pointer: cursor;
+}
+
+
 .buy-section{
 text-decoration: None;
 }
 
 .sell-section{
 text-decoration: None;
+}
+
+.my-account-welcome{
+width: 7.5rem !important;
 }

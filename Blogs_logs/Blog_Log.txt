@@ -1,0 +1,58 @@
+2021-12-05/20:12:05		ehhxbfchje
+2021-12-05/20:21:14		ehhxbfchje
+2021-12-05/20:29:00		checking
+2021-12-05/20:32:43		checking
+2021-12-05/20:33:05		checking
+2021-12-05/20:35:37		checking
+2021-12-05/20:35:38		error:: <Error from server: code=2000 [Syntax error in CQL query] message="line 1:170 no viable alternative at input 'Nina' (...) values('2df7f130734e4d14817c2e72ab564a9c','Test', 'Error, rerro" reeror, reeor'','[Nina]...)">
+2021-12-05/20:36:42		checking
+2021-12-05/20:36:43		error:: <Error from server: code=2000 [Syntax error in CQL query] message="line 1:144 no viable alternative at input 'test' (...) values('6e5e253de92f4a428c51e8211f7ea9b3','test', 'test'[test]...)">
+2021-12-05/20:41:22		checking
+2021-12-05/20:41:22		 <src.models.blogs.Blogs object at 0x7fed9008d730>: posted!!
+2021-12-05/20:48:23		checking
+2021-12-05/20:48:23		error:: <Error from server: code=2000 [Syntax error in CQL query] message="line 1:234 no viable alternative at input 've' (...) values('7b068113e7c4460494d692e5ac7d628d','How to write a book review', 'Other readers will always be interested in your opinion of the books you'[ve]...)">
+2021-12-05/20:48:23		 How to write a book review: posted by user Row(u_id='32403', u_address='city_41', u_address2='city_103', u_booklist=SortedSet(['2c7cf5b289844da280d301d9134e8def', '49a709ab60774e2db6ef85164c2c1fc3']), u_booklist2=OrderedMapSerializedKey([('order_IP5fg1Vud5CinD$55', 1), ('order_IP7qO663Xgkdwm$59', 1), ('order_IPSi8qFHAHxUWO$16', 1), ('order_ISz6LKgHheeN0p$16', 1), ('order_ISz6LKgHheeN0p$26', 1), ('order_ISz6LKgHheeN0p$55', 1), ('order_ISz6LKgHheeN0p$59', 1), ('order_IT4Rbo8gJSv7jd$16', 1), ('order_IT4Rbo8gJSv7jd$55', 1), ('order_IT4x8Jpkhmij2g$16', 1)]), u_cart=None, u_city='Bahadurgarh', u_country='India', u_email='ab1@mailinator.com', u_name='Nina update', u_orderhistory=OrderedMapSerializedKey([('26$55', '1$order_IP5fg1Vud5CinD'), ('31$16', '1$order_ISz6LKgHheeN0p'), ('37$16', '1$order_IT4x8Jpkhmij2g'), ('46$16', '1$order_IT4Rbo8gJSv7jd'), ('55$59', '1$order_ISz6LKgHheeN0p'), ('66$55', '1$order_ISz6LKgHheeN0p'), ('77$59', '1$order_IP7qO663Xgkdwm'), ('85$55', '1$order_IT4Rbo8gJSv7jd'), ('88$16', '1$order_IPSi8qFHAHxUWO'), ('99$26', '1$order_ISz6LKgHheeN0p')]), u_ordertimestamp=OrderedMapSerializedKey([('order_IP5fg1Vud5CinD', 'Dec 03,2021$Dec 10,2021'), ('order_IP7qO663Xgkdwm', 'Dec 03,2021$Dec 10,2021'), ('order_IPSi8qFHAHxUWO', 'Dec 03,2021$Dec 10,2021'), ('order_ISz6LKgHheeN0p', 'Dec 03,2021$Dec 10,2021'), ('order_IT4Rbo8gJSv7jd', 'Dec 03,2021$Dec 10,2021'), ('order_IT4x8Jpkhmij2g', 'Dec 03,2021$Dec 10,2021')]), u_phone='8979887669', u_pin='124507', u_pwd='Graduate', u_state='Haryana', u_street='Gali No. 5', u_username='STEM12')!!
+2021-12-06/22:13:51		All posts loaded
+2021-12-06/22:15:34		Saving to database
+2021-12-06/22:15:35		 Demon Slayer: Kimetsu no Yaiba: posted by user Nina update!!
+2021-12-06/22:15:35		All posts loaded
+2021-12-06/22:16:12		Selected post Review of Hattie Vavaseur loaded
+2021-12-06/22:17:19		Selected post Review of Hattie Vavaseur loaded
+2021-12-06/22:17:20		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-06/22:17:41		Comment added by Nina update at 1638809261495
+2021-12-06/22:17:42		Selected post Review of Hattie Vavaseur loaded
+2021-12-06/22:17:42		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-11/15:48:01		All posts loaded
+2021-12-13/19:48:30		All posts loaded
+2021-12-13/20:58:01		All posts loaded
+2021-12-13/20:58:28		Selected post Review of Hattie Vavaseur loaded
+2021-12-13/20:58:29		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-13/21:00:30		Selected post Review of Hattie Vavaseur loaded
+2021-12-13/21:00:30		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-13/21:00:33		All posts loaded
+2021-12-13/21:00:39		Selected post Testing loaded
+2021-12-13/21:00:39		No comments found for blog: Testing
+2021-12-13/21:00:46		All posts loaded
+2021-12-13/21:00:48		Selected post fgfgfgf loaded
+2021-12-13/21:00:48		No comments found for blog: fgfgfgf
+2021-12-13/21:00:52		Selected post Test loaded
+2021-12-13/21:00:52		No comments found for blog: Test
+2021-12-13/21:00:57		Selected post test loaded
+2021-12-13/21:00:57		No comments found for blog: test
+2021-12-13/21:10:02		All posts loaded
+2021-12-13/21:10:13		Selected post fgfgfgf loaded
+2021-12-13/21:10:13		No comments found for blog: fgfgfgf
+2021-12-13/21:10:16		Selected post Review of Hattie Vavaseur loaded
+2021-12-13/21:10:16		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-13/21:10:27		Selected post Review of Final Chance loaded
+2021-12-13/21:10:27		No comments found for blog: Review of Final Chance
+2021-12-13/21:10:29		All posts loaded
+2021-12-13/21:10:31		Selected post Review of Hattie Vavaseur loaded
+2021-12-13/21:10:32		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-13/21:10:33		All posts loaded
+2021-12-13/21:10:39		Selected post Review of Hattie Vavaseur loaded
+2021-12-13/21:10:39		Comment loaded for blog: Review of Hattie Vavaseur
+2021-12-13/21:10:41		All posts loaded
+2021-12-13/21:10:43		Selected post fgfgfgf loaded
+2021-12-13/21:10:43		No comments found for blog: fgfgfgf
+2021-12-13/21:10:45		All posts loaded

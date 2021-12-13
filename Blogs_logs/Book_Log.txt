@@ -1,0 +1,38 @@
+2021-12-06/22:33:17		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-06/22:33:19		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-06/22:33:34		The books matching keyword :  loaded.
+2021-12-06/22:34:05		Review added for book: Hatchet Jobs: Writings on Contemporary Fiction
+2021-12-06/22:34:06		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-06/22:34:07		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-06/22:34:45		The books based on genre as ['Space Opera'] and type as ['Old'] loaded.
+2021-12-06/22:35:01		The books based on genre as ['Space Opera', 'Fantasy- Isekai'] and type as ['Old'] loaded.
+2021-12-06/22:35:13		Book i.e. The Changeling Sea found as per query 
+2021-12-06/22:35:14		Book i.e. The Changeling Sea found as per query 
+2021-12-06/22:35:47		The books matching keyword :  loaded.
+2021-12-09/21:53:28		The books matching keyword : changeling loaded.
+2021-12-09/21:54:50		The books matching keyword : changeling loaded.
+2021-12-09/21:54:59		The books based on genre as ['Space Opera'] and type as ['Old'] loaded.
+2021-12-09/21:55:34		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-09/21:55:40		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:38:14		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:38:30		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/19:38:30		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/19:38:31		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/19:38:31		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/19:38:34		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:40:19		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:40:31		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:43:19		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:43:23		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:48:12		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/19:59:29		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/20:48:04		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/20:48:45		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/20:51:34		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/20:51:35		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/21:11:13		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/21:11:14		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per book_id given 
+2021-12-13/21:12:20		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/21:12:21		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/21:21:26		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 
+2021-12-13/21:21:26		Book i.e. Hatchet Jobs: Writings on Contemporary Fiction found as per query 

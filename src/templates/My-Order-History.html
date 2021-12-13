@@ -1,30 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/My-Order-History.css" />
-    <title>Order History</title>
-</head>
-<body>
-    <script src="/static/js/Header-Functionality.js"></script>
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/base.css" />
+    <link rel="stylesheet" href="../../static/css/Welcome.css" />
+    <link rel="Stylesheet" href="../../static/css/Blog-Specific-Page.css" />
+    <link rel="Stylesheet" href="../../static/css/Book-Detail-Page.css" />
+    <link rel="stylesheet" href="../../static/css/book-list-for-sellers.css" />
+    <link rel="stylesheet" href="../../static/css/Buy-Contents-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/Forum-Main-Page.css" />
+    <link rel="stylesheet" href="../../static/css/initiate-payment.css" />
+    <link rel="stylesheet" href="../../static/css/Login.css" />
+    <link rel="stylesheet" href="../../static/css/My-Account.css" />
+    <link rel="Stylesheet" href="../../static/css/My-cart.css" />
+    <link rel="stylesheet" href="../../static/css/My-Order-History.css" />
+    <link rel="stylesheet" href="../../static/css/Sell-Section.css" />
+    <link rel="stylesheet" href="../../static/css/SignUp.css" />
+{% endblock %}
+{% block script %}
+    <script src="../../static/js/Header-Functionality.js"></script>
+    <script src="../../static/js/My-Account-Functionality.js"></script>
+    <script src="../../static/js/My-Cart-Functionality.js"></script>
+{% endblock %}
+{% block main %}
+<article>
     <div class="header-class">
         <button id="logo" style="background:None; border:None" onclick="onClickLogo(this)"><img src="/static/assets/BPlatform.svg" alt="BPlatform" class="logo-class"/></button>
-        <form action="/books/search" method="post">
-        <div class="searchbar-class">
-            <img src="/static/assets/search.png" alt="searchIcon" class="search-icon" />
-            <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+        <form action="/welcome/buy/search" method="post">
+            <div class="searchbar-class">
+                <img src="/static/assets/search.png" alt="searchIcon" class="search-icon" />
+                <input type="text" placeholder="Search" class="search1-input-class" name="search-keyword" />
+            </div>
         </form>
-        </div>
         <div class="Button-class">
             <button id="sell-button" class="solid-button-class" onclick="onClickSellButton(this)">Sell</button>
             <div class="dropdown">
                 <button id="my-account-button"  class="icon-button-class my-account" onclick="onClickMyAccount()">
-                    <img src="/static/assets/myaccount.png" alt="my-account" class="my-account-icon" style="" />
+                    <img src="/static/assets/AccountCircle.png" alt="my-account" class="my-account-icon" style="width: 32px;height: 32px;" />
                 </button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="/users/buy/my-account">My Account</a>
@@ -43,20 +53,77 @@
         </div>
     </div>
     <div class="All-orders">
+        <button class="back-button-class" onclick="onclickbackbutton('buy')"><img src="/static/assets/arrow.png" class="arrow-class"></button>
+        {% if orders %}
         {% for i in orders %}
+        {% set testid= "track-order-{}".format(i[0].b_id) %}
         <div class="One-Order-Detail">
-            <div class="book-order-class">
-                <h3 style="font-weight: bolder; width: 40vw">{{ i.b_title }}</h3>
-                <h5 style="margin-left: 2vw">Author: {{ i.b_author }}</h5>
+            <div class='order-detail'>
+                <div class="book-order-class">
+                    <h3 style="font-weight: bolder; width: 40vw">{{ i[0].b_title }}</h3>
+                    <h5 style="margin-left: 2vw; width:25vw">Author: {{ i[0].b_author }}</h5>
+                </div>
+                {% for j in book_order_date %}
+                {% if j[0] == i[2] %}
+                 <h4 style="font-weight: bold;margin-top: 6vh">Delivery Expected by {{ j[2] }}</h4>
+                {% endif %}
+                {% endfor %}
+
+                <h1 class="price-class">{{ i[0].b_price }}</h1>
+                <div class="Order-buttons">
+                    <button class="order-button order-details" id="view_details_{{ i[0].b_id }}" onclick="onclickviewdetails(this, 'modal_container_view_details_{{ i[0].b_id }}', 'view_details_{{ i[0].b_id }}', 'close_view_details_{{ i[0].b_id }}')">View Order Details</button>
+                    <button class="order-button Track-My-Order" id="track-order-{{ i[0].b_id }}" onclick="onclicktrack(this, '{{ testid }}', 'progress-bar-{{ i[0].b_id }}')">Track my Order</button>
+                </div>
             </div>
-            <h4 style="font-weight: bold;margin-top: 6vh">Delivery Expected by 27 Aug</h4>
-            <h1 class="price-class">{{ i.b_price }}</h1>
-            <div class="Order-buttons">
-                <button class="order-button order-details">View Order Details</button>
-                <button class="order-button Track-My-Order">Track my Order</button>
+            <div class="progress-track content" id="progress-bar-{{ i[0].b_id }}">
+                <ul id="progressbar">
+                    {% set x = i[0].b_id %}
+                    {% set test= i[2]~'$'~x %}
+                    {% if user.u_booklist2[test] == 1 %}
+                        <li class="step0 active " id="step1">Ordered</li>
+                        <li class="step0" id="step2" style="text-align:center">Shipped</li>
+                        <li class="step0 text-right" id="step3">On the way</li>
+                        <li class="step0 text-right" id="step4">Delivered</li>
+                    {% elif user.u_booklist2[test] == 2 %}
+                        <li class="step0 active " id="step1">Ordered</li>
+                        <li class="step0 actve" id="step2" style="text-align:center">Shipped</li>
+                        <li class="step0 text-right" id="step3">On the way</li>
+                        <li class="step0 text-right" id="step4">Delivered</li>
+                    {% elif user.u_booklist2[test] == 3 %}
+                         <li class="step0 active " id="step1">Ordered</li>
+                        <li class="step0 active" id="step2" style="text-align:center">Shipped</li>
+                        <li class="step0 text-right active" id="step3">On the way</li>
+                        <li class="step0 text-right" id="step4">Delivered</li>
+                    {% elif user.u_booklist2[test] == 4 %}
+                        <li class="step0 active " id="step1">Ordered</li>
+                        <li class="step0 active" id="step2" style="text-align:center">Shipped</li>
+                        <li class="step0 text-right active" id="step3">On the way</li>
+                        <li class="step0 text-right active" id="step4">Delivered</li>
+                    {% endif %}
+                </ul>
             </div>
+             <div id="modal_container_view_details_{{ i[0].b_id }}" class="modal-container">
+                    <div class="modal details_modal">
+                        <div class="modal-contents">
+                            <button id="close_view_details_{{ i[0].b_id }}" class="close-btn viewdetails"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <div class="order_contents">
+                                <h3>{{ i[0].b_title }}</h3>
+                                {% for x in book_order_date %}
+                                {% if x[0] == i[2] %}
+                                <p>Order ID: {{ x[0] }}</p>
+                                <p>Ordered On: {{ x[1] }}</p>
+                                {% endif %}
+                                {% endfor %}
+                                <p>Quantity Ordered: {{ i[1] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         {% endfor %}
+        {% else %}
+                <h1 style="align-self: center;margin-top: 10vh;"> Not yet ordered anything</h1>
+        {% endif %}
     </div>
-</body>
-</html>
+</article>
+{% endblock %}
