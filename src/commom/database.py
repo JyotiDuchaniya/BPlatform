@@ -7,7 +7,7 @@ class Database(object):
     session = None
     keyspace = "jyoti"
     cloud_config = {
-            'secure_connect_bundle': '/Users/jyotiduchaniya/Desktop/BPlatform/secure-connect-users.zip'
+            'secure_connect_bundle': '../../secure-connect-users.zip'
     }
     auth_provider = PlainTextAuthProvider('eqQKOGgUlnsdyJnZTClqgycP', 'Wnl-iK27pJk6zNwOMoPW3TxpQ+k5UAiizPZaC2pckr_W6ZtSn,-Qpw-evvogYNnTrLEEW1Ak78-tpdO24I+YP35ZQ7.0HwR1eYO-z-kNzm+z.HFCtMHmAOSTD9gQXmCt')
     cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
