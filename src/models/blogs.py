@@ -19,7 +19,7 @@ class Blogs:
 
     @staticmethod
     def new_post( blog_title, blog_description, email):
-        user = Users.get_by_email(f'u_email= \'{email}\'')
+        user = Users.get_by_email(f"u_email= '{email}'")
         date1 = datetime.now().strftime('%b %d,%Y')
         newpost= Blogs(blog_title, blog_description, user.u_name)
         newpost.save_to_db(date1)
@@ -43,7 +43,7 @@ class Blogs:
 
     @staticmethod
     def one_post(blogid):
-        post = Database.find(collection='forum', query=f"blog_id = \'{blogid}\'")
+        post = Database.find(collection='forum', query=f"blog_id = '{blogid}'")
         App_Logger.log(file_path, "Selected post %s loaded" % post.blog_title)
         return post
 
@@ -62,7 +62,7 @@ class Blogs:
 
     @staticmethod
     def comments(blogid):
-        blog = Database.find(collection='forum', query=f"blog_id=\'{blogid}\'")
+        blog = Database.find(collection='forum', query=f"blog_id='{blogid}'")
         comments=[]
         if blog.blog_comment is not None:
             for i in sorted(blog.blog_comment):
