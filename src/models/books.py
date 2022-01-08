@@ -27,10 +27,10 @@ class Books(object):
     def book_add(cls, title, author, isbn, lang, pages, genre, publisher, price, edition, description, quantity, email):
         new_book = cls(title, author, isbn, lang, pages, genre, publisher, price, edition, quantity, description)
         new_book.book_add_to_db()
-        user1 = Users.get_by_email(f'u_email= \'{email}\'')
+        user1 = Users.get_by_email(f"u_email= '{email}'")
         bookid = {f'{new_book.id}'}
         Database.update(collection='users', data=f"u_booklist = u_booklist + {bookid}",
-                        query=f"u_id=\'{user1.u_id}\'")
+                        query=f"u_id='{user1.u_id}'")
         App_Logger.log(file_path, "New book i.e. %s uploaded by %s " % (new_book.title, user1.u_name))
 
     def book_add_to_db(self):
@@ -45,13 +45,13 @@ class Books(object):
 
     @classmethod
     def find_book(cls, book_id):
-        data = Database.find(collection='bookdata', query=f"b_id = \'{book_id}\'")
+        data = Database.find(collection='bookdata', query=f"b_id = '{book_id}'")
         App_Logger.log(file_path, "Book i.e. %s found as per query " % data.b_title)
         return data
 
     @classmethod
     def get_book_by_id(cls, bookid):
-        book = Database.find(collection='bookdata', query=f"b_id = \'{bookid}\'")
+        book = Database.find(collection='bookdata', query=f"b_id ='{bookid}'")
         App_Logger.log(file_path, "Book i.e. %s found as per book_id given " % book.b_title)
         if book is not None:
             return book
@@ -59,11 +59,11 @@ class Books(object):
     @staticmethod
     def add_review(comment, rating, bookid ):
         try:
-            book = Database.find(collection='bookdata', query=f"b_id = \'{bookid}\'")
+            book = Database.find(collection='bookdata', query=f"b_id = '{bookid}'")
             final_rating= int(rating)
             bookreview = {f'{comment}': final_rating}
             Database.update(collection='bookdata', data=f"b_review = b_review + {bookreview}",
-                            query=f"b_id=\'{book.b_id}\'")
+                            query=f"b_id='{book.b_id}'")
             App_Logger.log(file_path, "Review added for book: %s" % book.b_title)
             book_column_to_update = ''
             count=0
@@ -98,7 +98,7 @@ class Books(object):
                 else:
                     count = 1
             Database.update(collection='bookdata', data=f'{book_column_to_update} = {count}',
-                            query=f"b_id=\'{book.b_id}\'")
+                            query=f"b_id='{book.b_id}'")
         except Exception as e:
             App_Logger.log(file_path, "error:: %s" % e)
 
